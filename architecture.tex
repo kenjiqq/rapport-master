@@ -1,0 +1,46 @@
+%!TEX root = main.tex
+
+\section{State of Current StarCraft AI}
+\label{sec:stateofai}
+
+Classical games like chess or tic-tac-toe are usually solved by AIs using a
+single approach and searching through a single tree of game states, though
+usually by optimizing the search and tree in various ways.
+
+In comparison most approaches to AIs playing real-time strategy games usually
+have to use domain knowledge do further subdivide the problem of playing the
+game, because of the fine-grained simulations involved, and the various levels
+of abstraction that is needed to get a successful AI. And especially when
+approaching the way humans think about a problem more complex architectures
+are needed.
+
+\subsection{Decomposition of Problem}
+Michael Buro in his 2003 call for research \cite{buro2003real} identified six
+important sub-problems in real-time strategy games that he said would be
+interesting for AI research to focus on. The problem subdivision also dictates
+how the architecture has to be structured in order to solve them. It is
+therefore important to have a clear view of what the different main sub-problems
+are and how they will affect each other.
+
+\begin{description}
+  \item [Resource management.] 
+  \item [Decision making with uncertainty.]
+  \item [Spatial and temporal reasoning.]
+   \item [Collaboration.]
+  \item [Opponent modeling.]
+  \item [Adversarial real-time planning.]
+\end{description}
+
+A more general and simplified breakdown of the problem of playing StarCraft can
+be found in Ben Weber's presentation from the AIIDE 2010 StarCraft AI
+Competition:\cite{weber2010aiide}
+
+\begin{description}
+  \item [Managing economy]
+  \item [Expanding the tech tree]
+  \item [Producing units]
+  \item [Attack opponent]
+\end{description}
+
+\subsection{Architectures of Current StarCraft Agents}
+Most bots have a rather similar, modular architecture.

@@ -1,0 +1,112 @@
+% Set a sane document class, 10pt font, and a report template
+\documentclass[a4paper, twoside, openright, 12pt]{report}
+
+
+% Import used packages
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{longtable}
+\usepackage{lscape}
+\usepackage{parskip}
+\usepackage{color}
+\usepackage{multirow}
+\usepackage[lmargin=25mm,rmargin=25mm,tmargin=40mm,bmargin=30mm]{geometry}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+
+
+% Bibliographies
+\usepackage[defernumbers=true]{biblatex}
+\bibliography{slr-scbw/bib/bib}
+\bibliography{bibliography}
+
+% Use UTF-8
+%\usepackage[utf8x]{inputenc}
+\def \authors {Ken B\o{}rge Melhus Viktil \& Martin Tobias Holmedahl Sandsmark}
+\def \papertitle {Jantu - A Cognitive Agent Playing StarCraft: Brood War} 
+
+% Meta-information for the PDF
+\hypersetup{
+pdfauthor = \authors,
+pdftitle = \papertitle,
+pdfsubject = {Master project for IDI},
+pdfkeywords = {project, cognitive, architecture, starcraft, artificial
+    intelligence},
+pdfcreator = {LaTeX with hyperref package lol},
+pdfproducer = {pdflatex}}
+
+%opening
+\title{\papertitle}
+\author{\authors}
+
+\begin{document}
+
+
+\begin{titlepage}
+\begin{center}
+
+\vspace*{7cm}
+\hrule height 1pt
+\vspace{.5cm}
+\huge{\papertitle}
+
+\vspace{.5cm}
+\large{\authors}
+\vspace{.5cm}
+\hrule height 1pt
+
+\vspace{7cm}
+\end{center}
+\normalsize
+\begin{table}[!h]
+\begin{tabular}{ll}
+\multirow{4}{*}{\includegraphics[width=20mm]{graphics/logo.png}} & \\
+& Department of Computer and Information Science \\
+& Faculty of Information Technology, Mathematics and Electrical Engineering \\
+& Norwegian University of Science and Technology \\
+\end{tabular}
+\end{table}
+\vspace{.5cm}
+\begin{center}
+\today
+\end{center}
+\end{titlepage}
+
+\thispagestyle{empty}
+\cleardoublepage
+
+\begin{abstract}
+We present our work in implementing a cognitive and volitional agent that plays
+the game StarCraft: Brood War.
+\end{abstract}
+\thispagestyle{empty}
+\cleardoublepage
+
+\pagenumbering{roman}
+
+\tableofcontents
+\cleardoublepage
+\listoffigures
+\cleardoublepage
+%\listoftables
+\thispagestyle{empty}
+\cleardoublepage
+
+\pagestyle{fancy}
+\pagenumbering{arabic}
+
+\include{introduction}
+\include{theory}
+\include{results}
+\include{evaluation}
+\endrefsection
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
+
+\printbibliography[segment=0]
+
+\end{document}
