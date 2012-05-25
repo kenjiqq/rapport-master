@@ -1,0 +1,27 @@
+digraph "LIDA cycle" {
+    "Environment" -> "Sensory Memory" [label="Internal stimulus"];
+    "Environment" -> "Sensory Memory" [label="External stimulus"];
+    "Sensory-Motor Module" -> "Environment" [label="Action taken"];
+    "Sensory Memory" -> "Sensory-Motor Module" [label="Dorsal stream"];
+    "Sensory Memory" -> "Perceptual Associative Memory (slipnet)" [label="Primitive feature detection, ventral stream"];
+    "Perceptual Associative Memory (slipnet)" -> "Workspace" [label="Move percept"];
+    "Workspace" -> "Transient episodic memory" [label="Cue"];
+    "Transient episodic memory" -> "Workspace" [label="Local associations"];
+    "Transient episodic memory" -> "Declarative memory" [label="Consolidation"];
+    "Workspace" -> "Declarative memory" [label="Cue"];
+    "Declarative memory" -> "Workspace" [label="Local associations"];
+    "Structure building codelets" -> "Workspace" [label="Build structures"];
+    "Attentional codelets" -> "Workspace" [label="Form coalitions"];
+    "Workspace" -> "Global workspace" [label="Move coalitions"];
+    "Global workspace" -> "Attentional codelets" [label="Attentional learning"];
+    "Global workspace" -> "Structure building codelets" [label="Attentional learning"];
+    "Global workspace" -> "Workspace" [label="To conscious contents queue"];
+    "Global workspace" -> "Transient episodic memory" [label="Episodic learning"];
+    "Global workspace" -> "Procedural memory (scheme net)" [label="Conscious broadcast"];
+    "Global workspace" -> "Procedural memory (scheme net)" [label="Procedural learning"];
+    "Global workspace" -> "Action selection (behaviour net)" [label="Update behaviours"];
+    "Procedural memory (scheme net)" -> "Action selection (behaviour net)" [label="Instantiate schemes"];
+    "Action selection (behaviour net)" -> "Sensory-Motor Module" [label="Action selected"];
+    "Action selection (behaviour net)" -> "Sensory-Motor Module" [label="Action selected"];
+    "Action selection (behaviour net)" -> "Perceptual Associative Memory (slipnet)" [label="Preference (priming)"];
+}
