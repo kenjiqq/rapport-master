@@ -18,13 +18,13 @@
 \usepackage[x11names, rgb]{xcolor}
 \usepackage[utf8]{inputenc}
 \usepackage{tikz}
-\usetikzlibrary{snakes,arrows,shapes}
+\usetikzlibrary{decorations,arrows,shapes}
 \usepackage{amsmath}
 
 
 
 % Bibliographies
-\usepackage[defernumbers=true]{biblatex}
+\usepackage[defernumbers=true,style=alphabetic]{biblatex}
 \bibliography{bibliography}
 
 % Use UTF-8
@@ -48,13 +48,12 @@ pdfproducer = {pdflatex}}
 
 \begin{document}
 
-
 \begin{titlepage}
 \begin{center}
 
 \vspace*{7cm}
 \hrule height 1pt
-\vspace{.5cm}
+\includegraphics[width=30mm]{graphics/jantu.pdf}\\
 \huge{\papertitle}
 
 \vspace{.5cm}
