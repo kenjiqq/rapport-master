@@ -22,17 +22,29 @@ The LIDA framework is written in Java, so to use with with BWAPI we have to use 
 
 Figure \ref{fig:jantu} shows a general overview of the Jantu bots architecture, which consists of 3 main parts. In the Starcraft process the game it self runs together with BWAPI injected into the game client. Since this is all running in c++ and we are using the Java interface for BWAPI our code is run in a separate process that communicates with the Starcraft process using a shared memory bridge, this enables JNI-BWAPI to make calls to BWAPI and retrieve information back across the bridge. 
 
-In the Jantu process JNI-BWAPI is running together with the LIDA framework. 
-
-%si noe om at vi oppdaterte jni bwapi? og hva gjorde vi egentlig
-
-In order to integrate the LIDA framework with JNI-BWAPI we setup the framework first with the configurations we needed to get it up and running. This involves describing and structuring the modules you need in different XML configuration files. Also in these files we configure what kind of information that will be possible to use and transmit internally in the LIDA framework. 
+In the Jantu process JNI-BWAPI is running together with the LIDA framework. In order to integrate the LIDA framework with JNI-BWAPI we setup the framework first with the configurations we needed to get it up and running. This involves describing and structuring the modules you need in different XML configuration files. Also in these files we configure what kind of information that will be possible to use and transmit internally in the LIDA framework. 
 
 JNI-BWAPI consists of different models and types that represent Starcraft information like units and buildings together with a lot of native functions that can be called to communicate with BWAPI. So we integraded this with LIDA by using a custom implementation of the Environment class in LIDA. This class becomes the interface between the domain specific modules of LIDA, the sensory memory and sensory-action memory, and JNI-BWAPI. 
 
 \section{Detectors}
 \label{sec:detectors}
-Feature detectors is how LIDA perceives it's environment and identifies important aspects of the current game state. They are task that are run at specific intervals and parses the game state at that time in order to identify a given feature that can later be used in different modules in LIDA recognize thoughts and concepts. 
+Feature detectors is how LIDA perceives it's environment and identifies important aspects of the current game state. They are task that are run at specific intervals and parses the game state at that time in order to identify a given feature that can later be used in different modules in LIDA recognize thoughts and concepts. Each detector usually only identifies one specific feature, but it is possible for one detector to identify several features of they are of the same type. 
+
+These are the detectors we implemented: 
+\begin{itemize}
+\item \textbf{IdleWorkerFeatureDetector} \\
+This feature detector identifies worker units that doesn't have a job, a worker could be gathering resources, constructing buildings or scouting. But for efficiency it should be doing something at all times. 
+\item \textbf{LarvaFeatureDetector} \\
+This feature detector identifies larvae that are ready to be morphed into units. This is the only way Zerg can create units and when no larvae are available they can't create any more units until more larvae spawn. 
+\item \textbf{ResourceFeatureDetector} \\
+This feature detector identifies what type of units and buildings that we currently have enough resources available to create. This can be buildings we can construct, units we can morph or upgrades that we can research. 
+\item \textbf{SupplyBlockFeatureDetector} \\
+This feature detector identifies when we are getting close to being supply blocked, that means that we can't build any more units because another supply-granting building/unit is created.
+\item \textbf{UnsaturatedResourcesFeatureDetector} \\
+This feature detector identifies whether or not our available resource nodes have are saturated with enough workers that are gathering them. This can be used to decide if we need to build more workers or not.
+\end{itemize}
+
+Feature detectors can be created that detect almost every aspect of the game, and they can be everything from simply detecting the existence of specific units or game elements to more complex detectors that detect army compositions or enemy tactics and strategies. The more of them you implement the more advanced concepts you can identify and that opens up more advanced strategies you can perform yourself. 
 
 \section{Action Execution}
 \label{sec:actionexecution}
