@@ -48,4 +48,16 @@ Feature detectors can be created that detect almost every aspect of the game, an
 
 \section{Action Execution}
 \label{sec:actionexecution}
-Action are executed with commands!
+After LIDA has selected a focus of conciseness and an appropriate action has been selected from the behaviour net, the selected action must be executed. This gets execute by having the sensory-motor memory make calls to the environment class that functions as the interface between LIDA and JNI-BWAPI. 
+
+These are the possible action that gets selected and executed in Jantu:
+\begin{itemize}
+\item \textbf{Mine minerals} \\
+This actions takes a worker that is not currently performing a task and orders it to start mining minerals from an unsaturated mineral deposit.
+\item \textbf{Build worker} \\
+This action takes an available larva and starts the morphing process to make it into a worker drone. 
+\item \textbf{Build supply} \\
+This action constructs a building or unit that grants increased supply. This can be a building or a unit depending on the race. For Zerg it morphs a drone into an overlord that increases your supply cap. 	
+\end{itemize}
+
+How the action is implemented in the sensory-memory is up to the developer, as long as it performs its given function. It can be really simple implementation or you could do something more complex, LIDA is there to decide what parts or game state to focus on, and to make the decision on what action to perform, not how that action is executed.
