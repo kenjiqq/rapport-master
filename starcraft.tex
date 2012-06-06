@@ -48,4 +48,4 @@ BWAPI only provides a C++ API, so for using it from other languages various type
 There are two modes for loading agents using BWAPI; loading it directly into the StarCraft process, or using a shared-memory area to communicate state between the agent process and the StarCraft process in which the BWAPI code is running.\cite{bwapi}
 
 \subsubsection{JNIBWAPI}
-For using Java for developing an agent the most well-supported is using the JNIBWAPI project, which uses JNI to provide Java-bindings for BWAPI. It utilizes the shared-memory approach of BWAPI to avoid having to load the Java bytecode interpreter into the StarCraft memory.
+For using Java for developing an agent the most well-supported is using the JNIBWAPI project, which uses JNI to provide Java-bindings for BWAPI. It utilizes the shared-memory approach of BWAPI to avoid having to load the Java virtual machine into the StarCraft memory.
