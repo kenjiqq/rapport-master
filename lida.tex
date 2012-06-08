@@ -1,4 +1,4 @@
-\section{LIDA Framework}
+\section{LIDA}
 \label{sec:lida}
 LIDA is both the name of a cognitive model and a software framework implementing
 most parts of the LIDA model.
@@ -7,8 +7,8 @@ Explain the important parts of the framework and how they are used and implement
 \subsection{The LIDA model}
 \begin{figure}[h!tb]
 \centering
-\includegraphics[angle=90, height=0.85\textheight]{graphics/lida-cycle.pdf}
-\caption{The LIDA cycle}
+\includegraphics[width=0.75\textheight]{graphics/lida-model.png}
+\caption{Overview of the LIDA cycle.\cite{franklin2007lida}}
 \label{fig:lida-cycle}
 \end{figure}
 The LIDA model is a conceptual and computational model that describes cognition.
@@ -47,3 +47,5 @@ Model.
 This contains a list of previous broadcasts, which allows LIDA to take time
 into account, and work on things that happen in the time domain.
 
+\subsection{LIDA framework}
+The LIDA framework implements a growing subset of the full LIDA model in a re-usable Java-based software framework.
