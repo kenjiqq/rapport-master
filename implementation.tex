@@ -70,7 +70,26 @@ This feature detector identifies when it is time to attack the enemy. In our cur
 
 Feature detectors can be created that detect almost every aspect of the game, and they can be everything from simply detecting the existence of specific units or game elements to more complex detectors that detect army compositions or enemy tactics and strategies. The more of them you implement the more advanced concepts you can identify and that opens up more advanced strategies you can perform yourself. 
 
+\section{Attention Module}
+One of the main features of a cognitive system, and even of the human brain, is the ability to focus its consciousness or give attention to a subsection of world as it perceives it. This is what the {\em Attention module} is responsible for. It achieves this by running attention codelets that look for specific workspace content from the current situational model and them creates coalitions from this that is added to the global workspace where they will compete with other coalitions for consciousness.
 
+The activation for a coalition is based both on the activation for the PAM nodes that it contains and the activation for the codelet it self that created it. 
+
+We included a number of different attention codelets in our implementation to bring content to consciousness:
+\begin{itemize}
+\item \textbf{Idle worker codelet} \\
+A simple codelet that makes a coalition with idle worker node. This codelet has a high activation in order to make sure has a big change of winning the competition for consciousness since you want workers to be doing a job at all times. 
+\item \textbf{Build worker codelet} \\
+This codelet look for 3 different situations that decides if a worker should be created. That we can afford to create the worker, that our resources are not saturated already and that the base building is not currently training any units. 
+\item \textbf{Build supply codelet} \\
+This is another simple but important codelet that has a high activation value. It looks for the situation where we are supply blocked, or getting close to being supply blocked, and we can afford to build a supply structure. It has a high activation level because getting supply blocked means you can't create any more units until another supply structure is finished building, that will be a lot of valuable time lost where no units is trained. 
+\item \textbf{Build Order Codelet} \\
+This is one of the more complex codelets, it looks for all the buildings that we can currently afford as well as all the buildings that we need to create according to the build order nodes. Combining these in a coalition allows the action selector later to decide what building should be created next. 
+\item \textbf{Train Units Codelet} \\ 
+This codelet is similar to the Build Order Codelet, except it looks for the units we can afford to train in addition to what unit production buildings we currently have available to use. 
+\item \textbf{Strategy Codelet} \\
+This codelet looks for any node that is a child from the strategy node. These defensive or offensive strategies during a game. But in our implementation we only have a simple strategy that is to attack with every army unit we have at the same time when we feel we have a sufficient army size.
+\end{itemize}
 
 \section{Action Execution}
 \label{sec:actionexecution}
@@ -81,7 +100,7 @@ These are the possible action that gets selected and executed in Jantu:
 \item \textbf{Mine minerals} \\
 This actions takes a worker that is not currently performing a task and orders it to start mining minerals from an unsaturated mineral deposit.
 \item \textbf{Build worker} \\
-This action takes an available larva and starts the morphing process to make it into a worker drone. 
+This action starts training a worker unit at the main building in the home base, the Nexus for Protoss. 
 \item \textbf{Build supply} \\
 This action constructs a building or unit that grants increased supply. This can be a building or a unit depending on the race. For Protoss it creates a structure called a pylon that grants more available maximum supply.  	
 \item \textbf{Build gateway} \\
