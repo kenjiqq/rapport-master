@@ -32,16 +32,17 @@ JNI-BWAPI consists of different models and types that represent Starcraft inform
 
 
 \subsubsection{Environment module}
-The Environment module is what is between the JNI-BWAPI and LIDA. It is responsible for abstracting away the JNIBWAPI, and making sure that the game runs when it should. It allows LIDA to reset the state of the environment, by restarting the game.
-\paragraph{Timing} To be able to use the run/pause and timing functionality of LIDA inside StarCraft, we have a semaphore that is released by a LIDA codelet each tick. Then the callback from StarCraft/BWAPI waits for this to be released. This allows us to easily set the amount of StarCraft frames that are processed for each LIDA cycle, by increasing the amount of permits available in the semaphore. In our implementation we let one cognitive cycle equate to one in-game frame, however.
+The Environment module is the interface between JNI-BWAPI and LIDA. It is responsible for abstracting away the JNI-BWAPI, and making sure that the game runs when it should. It allows LIDA to reset the state of the environment, by restarting the game.
+\paragraph{Timing} When working with a congnitive architecture it is important to be able to look at the internal structures of the model during runtime, like the current situation model and what node structures have what activations. This is usefull for debugging and performance tweaking. To achive this we have to be able to pause and resume the game at anytime, so to the run/pause and timing functionality of LIDA inside StarCraft, we have a semaphore that is released by a LIDA codelet each tick. Then the callback from StarCraft/BWAPI waits for this to be released. This allows us to easily set the amount of StarCraft frames that are processed for each LIDA cycle, by increasing the amount of permits available in the semaphore. In our implementation we let one cognitive cycle equate to one in-game frame.
+
+\paragraph{GUI panel} We also provide a custom GUI panel to represent the environment, see Figure \ref{fig:environment-gui}. Different regions from the Brood War Terrain Analyzer are separated by gray lines. Enemy entities are displayed as red dots, entities owned by our agent are blue dots. Neutral entities (vespene geysers and mineral fields) are green. Choke points are marked by yellow circles.
+
 \begin{figure}[h!tb]
 \centering
 \includegraphics{graphics/environment-gui.png}
 \caption{Our custom representation of the state of the environmen}
 \label{fig:environment-gui}
 \end{figure}
-\paragraph{GUI panel} We also provide a custom GUI panel to represent the environment, see Figure \ref{fig:environment-gui}. Different regions from the Brood War Terrain Analyzer are separated by gray lines. Enemy entities are displayed as red dots, entities owned by our agent are blue dots. Neutral entities (vespene geysers and mineral fields) are green. Choke points are marked by yellow circles.
-
 
 \section{Detectors}
 \label{sec:detectors}
@@ -82,7 +83,13 @@ This actions takes a worker that is not currently performing a task and orders i
 \item \textbf{Build worker} \\
 This action takes an available larva and starts the morphing process to make it into a worker drone. 
 \item \textbf{Build supply} \\
-This action constructs a building or unit that grants increased supply. This can be a building or a unit depending on the race. For Zerg it morphs a drone into an overlord that increases your supply cap. 	
+This action constructs a building or unit that grants increased supply. This can be a building or a unit depending on the race. For Protoss it creates a structure called a pylon that grants more available maximum supply.  	
+\item \textbf{Build gateway} \\
+This action works in much the same way as {\em Build supply} except that it creates a production building called gateway. This building is used to warp in(train) army units. 
+\item \textbf{Train zealot} \\
+This action sets a zealot for training at an available gateway that is currently not training any other units. It is important that it doesn't queue it at a gateway that is already training another unit since it locks up resources and is inefficient. 
+\item \textbf{Attack} \\ 
+This action executes an attack on enemy units. It can be a very simple action like in our implementation where it just used every available army unit and attacks the enemy, or it could be more complex like using groups of units for different attacks. Also worth noting that if you are not using perfect information then you can only attack units that you have seen by scouting or being invaded. 
 \end{itemize}
 
 How the action is implemented in the sensory-memory is up to the developer, as long as it performs its given function. It can be really simple implementation or you could do something more complex, LIDA is there to decide what parts or game state to focus on, and to make the decision on what action to perform, not how that action is executed.
