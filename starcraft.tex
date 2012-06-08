@@ -14,13 +14,13 @@
 StarCraft: Brood War is a multiplayer, real-time strategy (henceforth referred to as RTS) game, with a heavy focus on both economic strategies, as well as effective management of individual in-game units.
 
 \subsection{Lore}
-To explain some of the terms used later, it is necessary to quickly go over some of the in-game story.
+To explain some of the terms used later, some basic knowledge about the in-game lore is needed.
 
 \subsubsection{Setting}
-The game is set far into the future, where the human race has escaped to other parts of the galaxy and started colonizing planets. Here they have discovered/been discovered by other, malevolent beings, referred to as {\em races} in the StarCraft community.
+The game is set far into the future, where the human race has escaped to other parts of the galaxy and started colonizing planets. Here they have discovered and been discovered by other malevolent races.
 \subsubsection{Races}
 There are three main races in the StarCraft universe, which are playable; the Terran (humans), Zerg and Protoss.
-\paragraph{Terran} are human colonists originally from earth.
+\paragraph{Terran} are human colonists originally from earth. This is the most balanced race, which relies on a mixture of large numbers and powerful units.
 \paragraph{Zerg} is an insect-like, assimilating race. They usually rely on superior numbers.
 \paragraph{Protoss} is an advanced race with powerful mental/supernatural abilities, based on {\em psionic} powers. They are both technologically and military advanced, and usually rely on few, but powerful units.
 
@@ -48,4 +48,4 @@ BWAPI only provides a C++ API, so for using it from other languages various type
 There are two modes for loading agents using BWAPI; loading it directly into the StarCraft process, or using a shared-memory area to communicate state between the agent process and the StarCraft process in which the BWAPI code is running.\cite{bwapi}
 
 \subsubsection{JNIBWAPI}
-For using Java for developing an agent the most well-supported is using the JNIBWAPI project, which uses JNI to provide Java-bindings for BWAPI. It utilizes the shared-memory approach of BWAPI to avoid having to load the Java bytecode interpreter into the StarCraft memory.
+For using Java for developing an agent the most well-supported is using the JNIBWAPI project, which uses JNI to provide Java-bindings for BWAPI. It utilizes the shared-memory approach of BWAPI to avoid having to load the Java virtual machine into the StarCraft memory.

@@ -1,0 +1,14 @@
+*~
+*.aux
+*.blg
+*.pdf
+*.out
+*.lof
+*.log
+*.bbl
+*.kilepr
+*.backup
+*-blx.bib
+*.run.xml
+*.toc
+*.swp
