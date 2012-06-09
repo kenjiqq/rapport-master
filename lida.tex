@@ -36,7 +36,7 @@ While LIDA seems to have started simply as an extension for the IDA agent with a
 
 The reason for using a framework is that software projects implementing cognitive models tend to grow fairly large and complex therefore difficult to both implement in the first place and maintain over time.
 
-Various types of frameworks, like the Qt application framework or Ruby on Rails web application framework, have been successfully used in software development for a long time to simplify and ease the implementation software projects.
+Various types of frameworks, like the Qt application framework or Ruby on Rails web application framework, have been successfully used in software development for a long time to simplify and ease the implementation software projects\cite{bachle2007rails}.
 
 They do this by providing pre-built functionality, a shared platform that can be improved and worked on by everyone who uses it, and also promotes collaboration between users of the framework. And since the amount of custom code that has to be maintained in the individual projects decrease significantly the burden of maintainence eases as well.\cite{snaider2012lida}
 
@@ -64,7 +64,7 @@ When a task has finished executing it is returned to the TaskSpawner which proce
 \subsubsection{Common internal representations}
 To make modules able to efficiently collaborate on information and data, there are several common internal representations used for data in the framework.
 
-{\em Nodes} and {\em Links} are the two major data structures used for representing information in the LIDA framework. They contain an {\em activation level} which describes their {\em salience} (their relative value).
+{\em Nodes} and {\em Links} are the two major data structures used for representing information in the LIDA framework.
 
 Nodes are data structures that can represent anything needed in an agent, both concretely or more abstract, like features, objects, events, concepts, feelings, actions, etc. Every Node has a reference to a PamNode from the Perceptual Associative Memory, from which it originates, as well as a unique ID.
 
@@ -86,16 +86,24 @@ Tasks are organized in a queue, sorted according to the tick they are scheduled 
 The task manager also has a {\em tick duration}, which is the minimum amount of time a tick takes. This can be used to be able to slow down execution if one wants to inspect what goes on. This only is used if the minimum tick duration is longer than the actual time used by the tasks. If the thread pool available to the task manager is larger than one, then several tasks might run in parallel, but still in one tick. Both the tick duration and the thread pool size is set in the configuration file, and the tick duration can also be controlled interactively from within the GUI.
 
 \subsubsection{Activation}
+The {\em activation level} describes the {\em salience} (their relative value) of the various elements in the framework that implements the Activatible interface. This includes the nodes, links, coalitions, codelets, schemes, behaviours and more.
 
+The activation level is represented by a decimal value between $0.0$ and $1.0$. The Activatible interface has two methods for controlling the activation level; {\em excite} and {\em decay}, and elements are usually removed if their activation level drops beneath a certain threshold (referred to as a {\em removal threshold} in the framework). These are controlled by separate elements, Strategies (described below), that are easily replacable and interchangeable.
+
+Learning is also done as an extension to the Activation interface, by providing a {\em base-level activation}, which can for example represent the usefulness of a node in the past. We won't go into detail about the Learnable interface here, as the current version of the LIDA framework doesn't ship with any learning algorithms that use this interface.
 
 \subsubsection{GUI}
 The framework contains a highly customizable GUI that can be used to inspect every aspect of the implemented model at runtime, as well as provides a way to control the execution.
 
+The appearance of the GUI is controlled by a ``GUI Panels'' property file which describes which custom and default panels are to be displayed in the GUI.
+
 \subsubsection{Strategies}
 Strategies encapsulate various algorithms that are shared between modules. Examples of Strategies are the decay and excitation strategies for the activation level; sigmoid and linear excitation and decay are the ones that are provided by default.
 
-\subsubsection{Factory}
-This object factory provides a way to easily generate objects for common data structures and strategies.
-
 \subsubsection{XML parser}
 Since the agent description is done in an XML file, the framework provides a complete XML parser that loads and creates an in-memory representation of the agent.
+
+\subsubsection{Factory}
+This object factory provides a way to easily generate objects for common data structures and strategies. It is highly recommended that elements aren't created directly, but requested from the ElementFactory. This allows for easy addition of new subclasses of for example Node and Link or strategies. It also allows to easily define activation levels, strategies and parameters to be set in the created objects. An example given in the documentation\cite{snaider2012lida} is that of several Nodes with the same NodeImpl class, but with varying excite and decay strategies, and different initial activations.
+
+The element type definitions are defined in the factoryData.xml XML file which is parsed with the included XML parser, and each contains the name which is used when requesting a new object instance from the factory, the class and parameter values.
