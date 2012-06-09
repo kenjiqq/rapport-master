@@ -1,8 +1,6 @@
 \section{LIDA}
 \label{sec:lida}
-LIDA is both the name of a cognitive model and a software framework implementing
-most parts of the LIDA model.
-Explain the important parts of the framework and how they are used and implemented
+LIDA is both the name of a cognitive model and a software framework based on the cognitive model.
 
 \subsection{The LIDA model}
 \begin{figure}[h!tb]
@@ -11,41 +9,93 @@ Explain the important parts of the framework and how they are used and implement
 \caption{Overview of the LIDA cycle.\cite{franklin2007lida}}
 \label{fig:lida-cycle}
 \end{figure}
-The LIDA model is a conceptual and computational model that describes cognition.
-It is based on the General Workspace Theory, which is a theory to describe
-functional consciousness. It incorporates and accounts for a large number of
-psychological and neuropsychological theories.
+
+The LIDA model is a conceptual and computational model that describes cognition. It is based on the General Workspace Theory, which is a theory to describe functional consciousness. It incorporates and accounts for a large number of psychological and neuropsychological theories.\cite{Franklin2012}
 
 \subsubsection{The LIDA cognitive cycle}
-The computational model of LIDA views the artificial agent's ``life'' as a
-series of cognitive cycles. A high-level, simplified view of how this cognitive
-cycle is modeled in LIDA can be seen in figure \ref{fig:lida-cycle}.
-The cognitive cycle itself is subdivided into three separate phases; the
-understanding phase, the consciousness phase and the action selection phase.
+The computational model of LIDA views the artificial agent's ``life'' as a series of cognitive cycles. A high-level, simplified view of how this cognitive cycle is modeled in LIDA can be seen in figure \ref{fig:lida-cycle}. The cognitive cycle itself is subdivided into three separate phases; the understanding phase, the consciousness phase and the action selection phase.
+
 \paragraph{Understanding phase}
 In the understanding phase sensory input is tagged with semantic meaning. First low-level feature detectors in the Sensory Memory are run on the incoming stimuli. The output from these is passed onto the Perceptual Associative Memory. There higher-level feature detectors are run, which recognise abstracted entities like objects, events, actions, etc. The output of these is sent to the Workspace, from where it is pushed to both the Transient Episodic Memory and the Declarative Memory. Local associations generated from these memory modules are combined with the percept to generate a Current Situational Model, which is the agent's ``inner map'' of how the world looks.
-\paragraph{Attention phase}
-Parts of the Current Situational Model is composited together to coalitions by
-Attention Codelets. These coalitions are put into the Global Workspace.
-From the Global Workspace a codelet selects the coalition in most need of
-conscious attention and broadcasts this.
-\paragraph{Action selection phase}
-The Action Selection module takes in possible action schemes from the Procedural Memory, and selects one of these according to a competetive process. The selected action scheme is sent to the Sensory-Motor Memory, where it is executed. This method of action selection is based on Maes' behaviour net.\cite{maes1989right} Learning is also done in the action selection phase. In the Perceptual Associative Memory new entities and associations are created and old ones are reinforced during this phase. In the Transient Episodic Memory events from the broadcast from the Global Workspace are stored. The Procedural Memory stores new possible action schemes from the broadcast, and reinforces old ones.
+\paragraph{Attention phase} Parts of the Current Situational Model is composited together to coalitions by Attention Codelets. These coalitions are put into the Global Workspace. From the Global Workspace a codelet selects the coalition in most need of conscious attention and broadcasts this.
+\paragraph{Action selection phase} The Action Selection module takes in possible action schemes from the Procedural Memory, and selects one of these according to a competetive process. The selected action scheme is sent to the Sensory-Motor Memory, where it is executed. This method of action selection is based on Maes' behaviour net.\cite{maes1989right} Learning is also done in the action selection phase. In the Perceptual Associative Memory new entities and associations are created and old ones are reinforced during this phase. In the Transient Episodic Memory events from the broadcast from the Global Workspace are stored. The Procedural Memory stores new possible action schemes from the broadcast, and reinforces old ones.
 
 
 \subsubsection{The workspace}
-The workspace is composed of three main modules; the Current Situational Model,
-Scratchpad and the Conscious Contents Queue.
-\paragraph{Current Situational Model} This is where the internal ``map'' of the
-agent is represented. This contains current events that are linked to
-associations. Various structure-building codelets running in the Workspace are
-responsible for building these.
-\paragraph{Scratchpad} The Scratchpad is used for temporary storage for the
-codelets while they build up structures before moving into Current Situational
-Model.
-\paragraph{Conscious Contents Queue}
-This contains a list of previous broadcasts, which allows LIDA to take time
-into account, and work on things that happen in the time domain.
+The workspace is composed of three main modules; the Current Situational Model, Scratchpad and the Conscious Contents Queue.
+
+\paragraph{Current Situational Model} This is where the internal ``map'' of the agent is represented. This contains current events that are linked to associations. Various structure-building codelets running in the Workspace are responsible for building these.
+\paragraph{Scratchpad} The Scratchpad is used for temporary storage for the codelets while they build up structures before moving into Current Situational Model.
+\paragraph{Conscious Contents Queue} This contains a list of previous broadcasts, which allows LIDA to take time into account, and reason on things that happens over time.
 
 \subsection{LIDA framework}
-The LIDA framework implements a growing subset of the full LIDA model in a re-usable Java-based software framework.
+\subsubsection{Background}
+The LIDA framework implements a growing subset of the full computational LIDA model in a re-usable Java-based software framework.
+
+While LIDA seems to have started simply as an extension for the IDA agent with added learning modes,\cite{franklin2007lida} it has evolved into a generic AGI framework, which can be used for other models than LIDA, because of the modular nature of the framework.\cite{snaider2011lida}
+
+The reason for using a framework is that software projects implementing cognitive models tend to grow fairly large and complex therefore difficult to both implement in the first place and maintain over time.
+
+Various types of frameworks, like the Qt application framework or Ruby on Rails web application framework, have been successfully used in software development for a long time to simplify and ease the implementation software projects.
+
+They do this by providing pre-built functionality, a shared platform that can be improved and worked on by everyone who uses it, and also promotes collaboration between users of the framework. And since the amount of custom code that has to be maintained in the individual projects decrease significantly the burden of maintainence eases as well.\cite{snaider2012lida}
+
+\subsubsection{Features}
+The LIDA software framework contains default implementations of the major modules in the LIDA model as well as abstract classes for the generic parts of the model, which needs to be implemented in an agent.
+
+The main parts of it are the modules, tasks, common internal representations, a task manager, a GUI, an object factory, strategies and also an XML parser for the agent description files.\cite{snaider2012lida}
+
+\subsubsection{Modules}
+The modules are collections of tightly coupled data and processes that operate on them. The coupling between the various modules usually is very loose, however.
+
+Domain independent modules in the LIDA model have full implementations in the framework, while domain-dependent ones only have abstract implementations that has to be provided by implementations that use the framework.
+
+Modules are arranged in a hierarchy; for example the Workspace module has a submodule that represents the Current Situational Model. 
+
+Communication between modules is done with the Observer design pattern, where objects registers interest in other objects by calling their {\em addListener} methods, and then get callbacks to pre-defined methods whenever there are updates. An example of this is the GlobalWorkspace-class, which implementations of BroadcastListener can listen to.
+
+\subsubsection{Tasks}
+These are small processes implemented as short-lived algorithms that reflect the {\em codelets} and other processes in the LIDA model. The implementation class is called {\em FrameworkTask}.
+
+Tasks are spawned by a separate class, the TaskSpawner, which classes that need to spawn tasks interact with. Tasks are scheduled for execution at particular ``ticks'', which are the time units used in the framework. The task manager runs the Task's ``runThisFrameworkTask'' method each time it is scheduled for execution. Tasks can either be run once, or repeatedly, depending on the type of task it is. For example an ExciteTask, which is used for passing activation, is run once, while feature detector tasks are run repeatedly on input.
+
+When a task has finished executing it is returned to the TaskSpawner which processes the results and decides whether the task should be rescheduled for execution.
+
+\subsubsection{Common internal representations}
+To make modules able to efficiently collaborate on information and data, there are several common internal representations used for data in the framework.
+
+{\em Nodes} and {\em Links} are the two major data structures used for representing information in the LIDA framework. They contain an {\em activation level} which describes their {\em salience} (their relative value).
+
+Nodes are data structures that can represent anything needed in an agent, both concretely or more abstract, like features, objects, events, concepts, feelings, actions, etc. Every Node has a reference to a PamNode from the Perceptual Associative Memory, from which it originates, as well as a unique ID.
+
+Links represents connections between Nodes. The framework differentiates between simple links, which links between two Nodes, and complex links, which links to other links. Links have a LinkCategory that describes the nature of the Link; for example a Link connecting two Nodes ``ball'' and ``red'' might have the category ``feature'', for a representation of a red ball. 
+
+Both Links and Nodes implement the {\em Linkable} interface, and contains a unique ID represented by a variable named {\em ExtendedId}.
+
+It is also possible to have custom subclasses of both Link and Node with custom properties and functionality.
+
+All instances of Link and Node, both default and custom subclasses, are created by the element factory.
+
+The common internal representation used for sending information between modules is usually a NodeStructure, a graph structure composed of Nodes and Links. The default NodeStructureImpl has a default implementation of methods for managing the elements in it (adding, removing, retrieving, merging, etc.). An important point to note is that when an element is added, a copy is made and added instead, because adding the same Java object to several node structures could have significant, unforeseen circumstances (where operating on data in one structure affects a completely unrelated one).
+
+\subsubsection{Task manager}
+The task manager is responsible for the dispatching (when called from the TaskSpawner) and execution of the tasks, usually parallelized. This is similar to the CRANIUM software in the CERA-CRANIUM architecture described in Section \ref{sec:cogarch}. It is also responsible for keeping track of the internal time representation, the ``ticks''.
+
+Tasks are organized in a queue, sorted according to the tick they are scheduled for. The task manager main loop consists of four steps; First it decays the activation level of all the modules, then it executes all the tasks scheduled for the current tick, thirdly it updates the GUI and then increments the tick. This loop is controlled by the public start/pause methods, which are also exposed in the toolbars in the GUI.
+
+The task manager also has a {\em tick duration}, which is the minimum amount of time a tick takes. This can be used to be able to slow down execution if one wants to inspect what goes on. This only is used if the minimum tick duration is longer than the actual time used by the tasks. If the thread pool available to the task manager is larger than one, then several tasks might run in parallel, but still in one tick. Both the tick duration and the thread pool size is set in the configuration file, and the tick duration can also be controlled interactively from within the GUI.
+
+\subsubsection{Activation}
+
+
+\subsubsection{GUI}
+The framework contains a highly customizable GUI that can be used to inspect every aspect of the implemented model at runtime, as well as provides a way to control the execution.
+
+\subsubsection{Strategies}
+Strategies encapsulate various algorithms that are shared between modules. Examples of Strategies are the decay and excitation strategies for the activation level; sigmoid and linear excitation and decay are the ones that are provided by default.
+
+\subsubsection{Factory}
+This object factory provides a way to easily generate objects for common data structures and strategies.
+
+\subsubsection{XML parser}
+Since the agent description is done in an XML file, the framework provides a complete XML parser that loads and creates an in-memory representation of the agent.
