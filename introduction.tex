@@ -7,27 +7,23 @@ In this chapter we introduce our project. Section \ref{sec:background} presents 
 \label{sec:background}
 
 \subsection{The Problem}
-Real-time strategy(RTS) games have been a complex problem to solve for artificial intelligence(AI) research for several years now. Ever since Michal Burro published an article in 2003\cite{buro2003real}, where he encouraged researchers to focus more of their expertise on the RTS domain, a lot of new methods have been applied to these problems with varying degrees of success. Now we have computers that are able to beat top level human players in real-time matches.\cite{campbell2002deep} 
+Real-time strategy(RTS) games have been a complex problem to solve for artificial intelligence(AI) research for several years now. Ever since Michal Burro published an article in 2003\cite{buro2003real}, where he encouraged researchers to focus more of their expertise on the RTS domain, a lot of new methods have been applied to these problems with varying degrees of success. Some have been very successful and are now able to beat top level human players in real-time matches.\cite{campbell2002deep} 
 
-After Burro's paper several research platforms emerged, including OpenRTS\cite{buro2003orts} and Wargus\cite{wargus}. Wargus is an open source WarCraft 2 clone, which uses the Lua scripting language for its agent creation, while OpenRTS is a platform originally created for AI research. These platforms have some limitations, however, because they are mostly developed by hobbyists and not professional game development companies, and therefore lack both polish and wide-spread usage outside of academic environments. They also lack a lot in the way of individual unit management, path finding, etc.
+After Burro's paper several research platforms emerged, including OpenRTS\cite{buro2003orts} and Wargus\cite{wargus}. Wargus is an open source WarCraft 2 clone, which uses the Lua scripting language for its agent creation, while OpenRTS is a platform originally created for AI research. These platforms have some limitations, however, because they are mostly developed by hobbyists and not professional game development companies, they lack both polish and wide-spread usage outside of academic environments. They also lack a lot in the way of individual unit management, path finding and generally the possibilities for complex strategies and tactics, because of the very simple game mechanics. 
 
-\subsubsection{BWAPI}
-Therefore a project called BWAPI, which lets people easily create agents that play a commercial real-time strategy game called StarCraft: Brood War, has emerged and gotten quite popular.\cite{bwapi} There are several competitions held each year, where programmers pit their BWAPI-based agents against eachother, often for money.\cite{sscait} These artificial agents still need a lot of work before they can match human players, however.\cite{eisbotvsfong}
+As an answer to this the Brood War Application programming interface(BWAPI) was created. It supplies a comprehensive API for interacting with popular RTS-game StarCraft Brood War. The API lets developers easily create agents that play the game and can be run in tournaments against each other as well as against real players. It has gained a lot of popularity during the last years.\cite{bwapi} There are several competitions held each year, where programmers pit their BWAPI-based agents against each other, both for money and fame.\cite{sscait} But these artificial agents still have some way to go before they can match human players.\cite{eisbotvsfong}
 
-And while just winning the game is certainly an interesting and worthy goal, it is our opinion that more closely matching human-level playing is much more interesting. According to Arrabales et al, it is still much more engaging for human players to play with other humans than with artificial agents.\cite{arrabales2009gamechars} We therefore think that approaching this problem with this in mind, and try to design more human-like agents, is a worthwhile goal.
+While just winning the game is an interesting and worthy goal, it is according to Arrabales et al much more engaging for human players to play with other humans than with artificial agents.\cite{arrabales2009gamechars} We therefore think that developing human-like intelligence for playing computer games is something that should have a greater focus then it has had so far. Cognitive architectures are based around trying to emulate how the human consciousness works and acts in certain situations. There has been done very little research so far into using cognitive agents for playing RTS games, but they have been utilized with great success in first person shooter games previously. %%TODO mabye find a source for this?	
 
-\subsubsection{Cognitive architectures}
-Utilizing cognitive architectures is one possible way of solving this. Cognitive architectures are architectures that base themselves on an understanding of how human cognition work, and the logical conclusion would therefore be that using this for implementing an agent would lead to human-like behaviour. There are several cognitive models, and architectures that try to implement these computationally, so chosing one to use requires some research.
-
-\subsection{Name}
+\section{Name}
 \label{sec:name}
-The name {\em Jantu} is hindi, and is translated as ``Pertaining to the merely sentient part of a creature, as distinguished from the intellectual, rational, or spiritual part; as, the animal passions or appetites.'', which reflects what we are trying to achieve with our work in this project.\cite{hindijantu}
+The name {\em Jantu} is hindi, and is translated as ``Pertaining to the merely sentient part of a creature, as distinguished from the intellectual, rational, or spiritual part; as, the animal passions or appetites.''\cite{hindijantu}, which reflects what we are trying to achieve with our work in this project.
 
 \section{Project goals}
 \label{sec:goals}
 First and foremost we set out to create a proof of concept agent that could play the game StarCraft: Brood War, built using a cognitive architecture.
 
-Secondly we want to explore what problems one faces when using a cognitive architecture in this domain, but also what works well.
+Secondly we wanted to see what kind of challenges present themselves when one implements an agent like this, and where there is room for improvement, and what the future might look like.
 
 \section{Report Structure}
 \label{sec:structure}
@@ -37,14 +33,12 @@ This report is structured into four chapters:
 This chapter describes the motivation and goal of the project as well as who
 contributed and the general structure of the report.
 \item Chapter 2: \textbf{Theory} \\
-In this chapter we present the domain we're working in; the real-time computer strategy game StarCraft: Brood War. We also present the cognitive architecture we're using.
+Here we present the domain we're working in; the real-time computer strategy game StarCraft: Brood War. We also present the cognitive architecture we're using.
 \item Chapter 3: \textbf{Implementation} \\
 This chapter presents our implementation.
 \item Chapter 4: \textbf{Results} \\
 This chapter presents how our implementation performed.
 \item Chapter 5: \textbf{Evaluation} \\
 Here we summarize and evaluate the work presented in this report.
-\item Chapter 6: \textbf{Future Work} \\
-Here we give some ideas of what work is left, and where others can build on our project to make it better.
 
 \end{itemize}
