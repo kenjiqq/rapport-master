@@ -5,8 +5,29 @@ This chapter presents results of how our implementation performed
 \section{Architecture}
 \label{sec:architecture}
 
-\section{In-game performance}
+\section{Agent performance}
+In this section we describe the performance test we ran and the results that it yielded.
+\subsection{The test}
+To measure how well the agent performed when it played  we ran 50 games against the built-in AI in StarCraft Brood War. We only ran 50 games because the performance of the agent is very dependent on how how many feature detectors are implemented and how much of the game that the agent is capable of understanding. Because we only implemented a very basic agent as proof of concept it will not be smart enough to handle all the situations that it will get into, and therefor the performance is not any good measurement of how well the method will perform if expanded upon with more complex detectors and schemes. 
+	
+All the games where played on the same map, Astral Balance, to avoid any map specific problems that could mess with the agents performance. As explained in section \ref{sec:overview} our agent only played as the Protoss race, and the enemy was set to random so they could be any of the three available races. We gave the agent access to perfect information in the game, because the built-in AI also utilizes perfect information, and that means it does not have to scout to know where the enemy is located.
 
+\subsection{The result}
+Table \ref{tab:test_results} shows the results from the performance test. After the 50 games we ended up with 17 victories and 33 defeats. Something that equals a win percentage of 34\%. In a few situations the agent got stuck after it had destroyed all the enemy buildings and unit except for one or two in an expansion or hiding in a corner. These games we judged as a win because the enemy had no chance of rebuilding no matter how long it was left alone in this state.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{| c | c |}
+  \hline                        
+  Victories & Defeats\\
+  \hline
+  17 & 33 \\
+  \hline  
+\end{tabular}
+\caption{Results from performance test}
+\label{tab:test_results}
+\end{center}
+\end{table}
 \section{A cognitive cycle}
 A cognitive cycle is the a sequence of processes that the cognitive model has to go through from sensing to execution of an action. In LIDA the sequence starts with sensing of the environment, next is understanding, then attention and last is the selection of an action and its execution. These cycles run constantly, and even several of them runs at the same time just in different stages. So when one cycle is finishing broadcasting from the global workspace another can be starting in the sensing phase. 
 
