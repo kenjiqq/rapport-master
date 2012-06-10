@@ -11,6 +11,8 @@ Section \ref{sec:actionexecution} how action are executed from lida to bwapi
 \label{sec:overview}
 We chose the LIDA framework to work with both because it has a strong theoretical underpinning, and also because it is is easily available and is well-documented and has an active community working with and on it.
 
+We also chose to ``cheat'' in our implementation by enabling perfect information in BWAPI, so we wouldn't need to implement behaviour for scouting yet.
+
 \section{Integration}
 \label{sec:integration}
 BWAPI itself provides only a basic C++ API, so JNIBWAPI provides, as explained in chapter \ref{sec:starcrafttheory}, a custom Java API using the Java Native Interface, JNI.\cite{jni} But because we can't load an entire Java VM into the StarCraft process, we use shared memory to connect the StarCraft process with the process of our agent. We found that to do this you need to run the processes with Administrator privileges in Windows.

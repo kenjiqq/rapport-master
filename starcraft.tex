@@ -12,10 +12,11 @@
 \end{figure}
 %General introduction to the game, with emphasis on the parts that we utilize most in our project
 
-StarCraft is a multi-player, real-time strategy (henceforth referred to as RTS) game, with a heavy focus on both economic strategies, as well as effective management of individual in-game units. Brood War is the expansion pack for the original StarCraft game that introduced new units, maps and upgrades. The game has been praised for its emergent complexity even though the mechanics are simple to understand. Brood Wars has been played on a high competetive level for over 10 years, and it has been evolving all that time with new strategies and tactics.
+StarCraft is a multi-player, real-time strategy (henceforth referred to as RTS) game, with a heavy focus on both economic strategies, as well as effective management of individual in-game units. Brood War is the expansion pack for the original StarCraft game that introduced new units, maps and upgrades. The game has been praised for its emergent complexity even though the mechanics are simple to understand. StarCraft: Brood War has been played on a high competetive level for over 10 years, and it has been evolving all that time with new strategies and tactics.
 
 \subsection{Races}
-The game has three races that a player selects between. The insect race Zerg, the advanced alien race Protoss and the humans Terran. Each race has it's own units and buildings as well as different game mechanics. 
+The game has three races that a player selects between. The insect-like Zerg, the advanced alien race Protoss and the human
+Terrans. Each race has it's own units and buildings as well as different game mechanics. 
 
 \subsubsection{Terran}
 \begin{figure}[h!tb]
@@ -26,13 +27,11 @@ The game has three races that a player selects between. The insect race Zerg, th
 
 The terran are human colonists originally from earth. This is the most balanced race, which relies on a mixture of large numbers and powerful units. They have great mobility in their biological armies, and  great defense and slow turtling in their mechanical units like tanks. 
 
-The Terran worker is a Space Construction Vehicle (SCV), and unique for Terran is that is can repair any mechanical unit or buildings if they get damaged.
+The Terran worker is a Space Construction Vehicle (SCV), and unique for Terran is that it can repair any mechanical unit or building if they are damaged. Another unique mechanic with Terran is that their buildings can lift off and fly around to reposition themselves.
 
-Another unique mechanic with Terran is that their buildings can lift of and fly around to reposition themselves.
+Several of the buildings can also be upgraded with addons that are smaller buildings that are constructed and connected to the main building. Addons unlock new upgrades and units to be constructed from the building it is connected to. Utilizing the lift off mechanic, buildings can swap addons after they are constructed. This increases the build order diversity, as addons can be switched between construction buildings.
 
-Several of the buildings can also be upgraded with addons that are smaller buildings that are constructed and connected to the main building. Addons unlock new upgrades and units to be constructed from the building it is connected to. Using lift off buildings can swap addons after they are constructed, so that opens up more possible build order diversity.
-
-Every Terran unit can be healed after they take damage, the mechanical units and buildings can be repaired using an SCV, but doing so means that the worker will not be gathering resources for that time. To heal damaged biological units you have to train special units called Medics. 
+All terran units can be healed after they take damage; the mechanical units and buildings can be repaired using an SCV (but doing so means that the worker will not be gathering resources for that time), and to heal damaged biological units you have to train special units called Medics.
 
 \subsubsection{Zerg}
 \begin{figure}[h!tb]
@@ -43,19 +42,19 @@ Every Terran unit can be healed after they take damage, the mechanical units and
 
 The zerg is an insect-like collection of different biological races assimilated under a central intelligence.
 
-They rely on biological abilities that are selectively evolved as appose to using technology like the other two races.
+They rely on biological abilities that are selectively evolved instead of relying on technology like the other two races.
 
-The individual units in the Zerg army is not very powerful, but their strength lies in superior numbers of units as well as the ability to quickly reinforce the army with new units when some dies off.
+The individual units in the Zerg army are usually not very powerful, but their strength lies in superior numbers of units as well as the ability to quickly reinforce the army with new units when some die.
 
-The Zerg worker unit is called a drone, and what separates this worker from the other races is that in order to create a new building the worker has to sacrifice it self to morph into the new building.
+The Zerg worker unit is called a drone. What separates this worker from the other races is that in order to create a new building the worker has to ``sacrifice'' itself to morph into the new building, the worker becomes the building.
 
-Zerg has a unique game mechanic for creating new units. The main building, called the hatchery, creates larva on regular intervals, up to a maximum of three, that can be morphed into new units. Both workers and army units are created from the larva, and because of the limited availability on these a player has to prioritize at all time if he wants to create workers or army units.
+Zerg has a unique game mechanic for creating new units. The main building, called the hatchery, creates larva on regular intervals, up to a maximum of three, which can be morphed into new units. Both workers and army units are created from the larva, and because of the limited availability on these a player has to prioritize at all times whether he wants to create workers or army units, balancing military strength against economic advantage.
 
-To increase the production capacity they have to either expand to a new base, or create several hatcheries in their current bases to gain access to more larva.
+To increase the production capacity they have to either expand to a new base, or create extra support hatcheries in their current bases to gain access to more larva.
 
-Zerg can only build new buildings on creep, something that spreads from existing buildings as well as Creep Colonies, a special building that is used only for extending creep coverage on the map.
+Zerg can only build new buildings on creep, a biological substance that covers the ground and spreads from existing buildings as well as from Creep Colonies, a special building that is used only for extending creep coverage on the map.
 
-Zerg units have a unique ability to regenerate health after they are damaged if they get left alone out of combat. This makes retreating and regrouping a good tactic for zerg players as their army will have time to regenerate back to full health after a defeat on the battleground. Together with another unique ability some of the Zerg units have that is called burrow, that allows the to burrow under ground and hide or run away, it can be really hard to kill some units since they can escape and regenerate the lost health. 
+Zerg units have a unique ability to regenerate health after they are damaged as long as they are not in combat. This makes retreating and regrouping a good tactic for Zerg players as their army will have time to regenerate back to full health after a defeat on the battleground. Together with another unique ability some of the Zerg units have called burrow, which allows them to burrow underground and hide or escape, it can be really hard to kill some units since they can escape and regenerate the lost health. 
 
 \subsubsection{Protoss}
 \begin{figure}[h!tb]
@@ -93,7 +92,7 @@ There has sprung up a sizable community around this effort, and there are severa
 
 There are also several third-party addons and extra libraries for easing the development of agents, such as the Brood War Terrain Analyzer (BWTA), which provides easy-to-use functions for analyzing the maps for finding choke-points and suitable locations for various buildings,\cite{bwta} and the Brood War Standard Addon Library (BWSAL) which is both a generic, modular framework for BWAPI agents as well as default implementations for a large part of the modules needed for implementing such an agent.\cite{bwsal}
 
-BWAPI only provides a C++ API, so for using it from other languages various types of bindings are needed.
+BWAPI only provides a C++ API, so for using it from other languages various types of bindings are needed.\cite{jnibwapi}
 
 There are two modes for loading agents using BWAPI; loading it directly into the StarCraft process, or using a shared-memory area to communicate state between the agent process and the StarCraft process in which the BWAPI code is running.\cite{bwapi}
 
