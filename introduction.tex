@@ -1,14 +1,13 @@
 %!TEX root = main.tex
 
 \chapter{Introduction}
-In this chapter we introduce our project, as well as the background and motivation for doing this. Section \ref{sec:background} presents the background and our motivation for the project, a short introduction to Starcraft and the API we will use and describes what we will do in this project and our main goals. Section \ref{sec:contributions} contains the main contributors to the project as well as our supervisors. Section \ref{sec:goals} explains the goals we hope to accomplish during the project. Section \ref{sec:structure} introduces the structure of this report.
+In this chapter we introduce our project. Section \ref{sec:background} presents the background and our motivation for the project, a short introduction to Starcraft and the API we will use and describes what we will do in this project and our main goals. Section \ref{sec:goals} explains the goals we hope to accomplish during the project. Section \ref{sec:structure} introduces the structure of this report.
 
 \section{Background and Motivation}
 \label{sec:background}
-It is our opinion that the study of cognitive architectures are woefully underrepresented in the field of artificial intelligence, and also in the domain of computer games. We believe that the use of cognitive architectures should be further explored to attain a better understanding of the gains from using a cognitive architecture.
 
 \subsection{The Problem}
-Up to 2003, there wasn't much academic research done in the domain of real-time strategy games, until Michael Burro published an influental paper in which he outlined various reasons for why this should change.\cite{buro2003real} Before his paper, most research on strategic reasoning was done in the domain of turn-based board games like chess and checkers, which in itself was impressive as it progressed to the point where computers are now able to beat top level human players in real-time matches.\cite{campbell2002deep} The most obvious difference between turn-based games like that, and real-time strategy games like the ones Burro was calling attention to, is that most real-time strategy games are only partially observable and partially deterministic. This makes for much more interesting problems when it comes to reasoning, in our opinion.
+Real-time strategy(RTS) games have been a complex problem to solve for artificial intelligence(AI) research for several years now. Ever since Michal Burro published an article in 2003\cite{buro2003real}, where he encouraged researchers to focus more of their expertise on the RTS domain, a lot of new methods have been applied to these problems with varying degrees of success. Now we have computers that are able to beat top level human players in real-time matches.\cite{campbell2002deep} 
 
 After Burro's paper several research platforms emerged, including OpenRTS\cite{buro2003orts} and Wargus\cite{wargus}. Wargus is an open source WarCraft 2 clone, which uses the Lua scripting language for its agent creation, while OpenRTS is a platform originally created for AI research. These platforms have some limitations, however, because they are mostly developed by hobbyists and not professional game development companies, and therefore lack both polish and wide-spread usage outside of academic environments. They also lack a lot in the way of individual unit management, path finding, etc.
 
@@ -23,10 +22,6 @@ Utilizing cognitive architectures is one possible way of solving this. Cognitive
 \subsection{Name}
 \label{sec:name}
 The name {\em Jantu} is hindi, and is translated as ``Pertaining to the merely sentient part of a creature, as distinguished from the intellectual, rational, or spiritual part; as, the animal passions or appetites.'', which reflects what we are trying to achieve with our work in this project.\cite{hindijantu}
-
-\section{Contributions}
-\label{sec:contributions}
-Firstly we would also like to thank our supervisors; Helge Langseth and Anders Kofod-Petersen. We would also like to thank the Cognitive Computing Research Group at the University of Memphis, for their LIDA framework which is the basis of our project. Finally we would like to thank the developers of the BWAPI project, and in particular Adam Heinermann, as well as the rest of the members in the \#BWAPI IRC channel on Freenode.
 
 \section{Project goals}
 \label{sec:goals}
