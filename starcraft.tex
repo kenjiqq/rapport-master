@@ -4,28 +4,75 @@
 \label{sec:starcrafttheory}
 
 
-%General introduction to the game, with emphasis on the parts that we utilize most in our project
-
-StarCraft is a multi-player, real-time strategy (henceforth referred to as RTS) game, with a heavy focus on both economic strategies, as well as effective management of individual in-game units. Brood War is the expansion pack for the original StarCraft game that introduced new units, maps and upgrades. The game has been praised for its emergent complexity even though the mechanics are simple to understand. Brood Wars has been played on a high competetive level for over 10 years, and it has been evolving all that time with new strategies and tactics.
-
 \begin{figure}[h!tb]
 \centering
 \includegraphics[scale=0.5]{graphics/scbw.jpg}
 \caption{StarCraft: Brood War}
 \label{fig:scbwIntro}
-\end{figure}	
+\end{figure}
+%General introduction to the game, with emphasis on the parts that we utilize most in our project
 
+StarCraft is a multi-player, real-time strategy (henceforth referred to as RTS) game, with a heavy focus on both economic strategies, as well as effective management of individual in-game units. Brood War is the expansion pack for the original StarCraft game that introduced new units, maps and upgrades. The game has been praised for its emergent complexity even though the mechanics are simple to understand. Brood Wars has been played on a high competetive level for over 10 years, and it has been evolving all that time with new strategies and tactics.
+
+\subsection{Races}
 The game has three races that a player selects between. The insect race Zerg, the advanced alien race Protoss and the humans Terran. Each race has it's own units and buildings as well as different game mechanics. 
 
-\subsubsection{Races}
-There are three main races in the StarCraft universe, which are playable; the Terran (humans), Zerg and Protoss.
+\subsubsection{Terran}
+\begin{figure}[h!tb]
+\centering
+\includegraphics[scale=0.7]{graphics/terranicon.png}
+\caption{The in-game logo of the Terran race.\cite{terranlogo}}
+\end{figure}
 
-\paragraph{Terran} are human colonists originally from earth. This is the most balanced race, which relies on a mixture of large numbers and powerful units. They have great mobility in their biological armies, and  great defense and slow turtling in their mechanical units like tanks. 
-The Terran worker is a Space Construction Vehicle (SCV), and unique for Terran is that is can repair any mechanical unit or buildings if they get damaged. Another unique mechanic with Terran is that their buildings can lift of and fly around to reposition themselves. Several of the buildings can also be upgraded with addons that are smaller buildings that are constructed and connected to the main building. Addons unlock new upgrades and units to be constructed from the building it is connected to. Using lift off buildings can swap addons after they are constructed, so that opens up more possible build order diversity. Every Terran unit can be healed after they take damage, the mechanical units and buildings can be repaired using an SCV, but doing so means that the worker will not be gathering resources for that time. To heal damaged biological units you have to train special units called Medics. 
+The terran are human colonists originally from earth. This is the most balanced race, which relies on a mixture of large numbers and powerful units. They have great mobility in their biological armies, and  great defense and slow turtling in their mechanical units like tanks. 
 
-\paragraph{Zerg} is an insect-like, collection of different biological races assimilated under a central intelligence. They rely on biological abilities that are selectively evolved as appose to using technology like the other two races. The individual units in the Zerg army is not very powerful, but their strength lies in superior numbers of units as well as the ability to quickly reinforce the army with new units when some dies off. The Zerg worker unit is called a drone, and what separates this worker from the other races is that in order to create a new building the worker has to sacrifice it self to morph into the new building. Zerg has a unique game mechanic for creating new units.The main building, called the hatchery, creates larva on regular intervals, up to a maximum of three, that can be morphed into new units. Both workers and army units are created from the larva, and because of the limited availability on these a player has to prioritize at all time if he wants to create workers or army units. To increase the production capacity they have to either expand to a new base, or create several hatcheries in their current bases to gain access to more larva. Zerg can only build new buildings on creep, something that spreads from existing buildings as well as Creep Colonies, a special building that is used only for extending creep coverage on the map. Zerg units have a unique ability to regenerate health after they are damaged if they get left alone out of combat. This makes retreating and regrouping a good tactic for zerg players as their army will have time to regenerate back to full health after a defeat on the battleground. Together with another unique ability some of the Zerg units have that is called burrow, that allows the to burrow under ground and hide or run away, it can be really hard to kill some units since they can escape and regenerate the lost health. 
+The Terran worker is a Space Construction Vehicle (SCV), and unique for Terran is that is can repair any mechanical unit or buildings if they get damaged.
 
-\paragraph{Protoss} is a highly advanced race with powerful mental abilities. They are both technologically and military advanced, and usually rely on few, but very powerful single units. They have very expensive units that can crush a much bigger army by themselves. The protoss worker is called a probe, probes doesn't need to construct the buildings they only tag an area and then the building gets warped in from the protoss home world, this means a single probe can start the construction of several buildings at the same time and then return to gathering resources. Similar to Zerg, Protoss can't simply construct buildings anywhere, they have to be constructed on a power grid that is generated by pylons, the Protoss supply building. A unique Protoss feature is that all the units and buildings have shields that protect them from damage and regenerates over time. For an enemy to damage the unit it first has to deplete the shield, then it can do damage to the health of the unit. 
+Another unique mechanic with Terran is that their buildings can lift of and fly around to reposition themselves.
+
+Several of the buildings can also be upgraded with addons that are smaller buildings that are constructed and connected to the main building. Addons unlock new upgrades and units to be constructed from the building it is connected to. Using lift off buildings can swap addons after they are constructed, so that opens up more possible build order diversity.
+
+Every Terran unit can be healed after they take damage, the mechanical units and buildings can be repaired using an SCV, but doing so means that the worker will not be gathering resources for that time. To heal damaged biological units you have to train special units called Medics. 
+
+\subsubsection{Zerg}
+\begin{figure}[h!tb]
+\centering
+\includegraphics[scale=0.3]{graphics/zergicon.png}
+\caption{The in-game logo of the Zerg race.\cite{zerglogo}}
+\end{figure}
+
+The zerg is an insect-like collection of different biological races assimilated under a central intelligence.
+
+They rely on biological abilities that are selectively evolved as appose to using technology like the other two races.
+
+The individual units in the Zerg army is not very powerful, but their strength lies in superior numbers of units as well as the ability to quickly reinforce the army with new units when some dies off.
+
+The Zerg worker unit is called a drone, and what separates this worker from the other races is that in order to create a new building the worker has to sacrifice it self to morph into the new building.
+
+Zerg has a unique game mechanic for creating new units. The main building, called the hatchery, creates larva on regular intervals, up to a maximum of three, that can be morphed into new units. Both workers and army units are created from the larva, and because of the limited availability on these a player has to prioritize at all time if he wants to create workers or army units.
+
+To increase the production capacity they have to either expand to a new base, or create several hatcheries in their current bases to gain access to more larva.
+
+Zerg can only build new buildings on creep, something that spreads from existing buildings as well as Creep Colonies, a special building that is used only for extending creep coverage on the map.
+
+Zerg units have a unique ability to regenerate health after they are damaged if they get left alone out of combat. This makes retreating and regrouping a good tactic for zerg players as their army will have time to regenerate back to full health after a defeat on the battleground. Together with another unique ability some of the Zerg units have that is called burrow, that allows the to burrow under ground and hide or run away, it can be really hard to kill some units since they can escape and regenerate the lost health. 
+
+\subsubsection{Protoss}
+\begin{figure}[h!tb]
+\centering
+\includegraphics[scale=0.3]{graphics/protossicon.png}
+\caption{The in-game logo of the Protoss race.\cite{protosslogo}}
+\end{figure}
+
+The protoss is a highly advanced race with powerful mental abilities.
+
+They are both technologically and military advanced, and usually rely on few, but very powerful single units. They have very expensive units that can crush a much bigger army by themselves.
+
+The protoss worker is called a probe, probes doesn't need to construct the buildings, they only tag an area and then the building gets warped in from the protoss home world. This means a single probe can start the construction of several buildings at the same time and then return to gathering resources.
+
+Similar to Zerg, Protoss can't simply construct buildings anywhere, they have to be constructed on a power grid that is generated by pylons, the Protoss supply building.
+
+A unique Protoss feature is that all the units and buildings have shields that protect them from damage and regenerates over time. For an enemy to damage the unit it first has to deplete the shield, then it can do damage to the health of the unit. But damage taken after the shield is down cannot be healed or repaired.
 
 \subsection{Gameplay}
 \subsubsection{Micro vs. macro}
