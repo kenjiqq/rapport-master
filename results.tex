@@ -1,11 +1,22 @@
 %!TEX root = main.tex
 
 \chapter{Results}
-This chapter presents results of how our implementation performed
-\section{Architecture}
-\label{sec:architecture}
+This chapter presents results of how our implementation performed.
 
 \section{In-game performance}
+\begin{table}[h!]
+\centering
+\begin{tabular}{l|l|l}
+ Against & Wins & Losses \\
+ \hline
+ Zerg    & 0 & 2 \\
+ Protoss & 0 & 2 \\
+ Terran  & 0 & 0 \\
+\end{tabular}
+\caption{Wins and losses from 20 runs.}
+\label{tab:winslosses}
+\end{table}
+
 
 \section{A cognitive cycle}
 A cognitive cycle is the a sequence of processes that the cognitive model has to go through from sensing to execution of an action. In LIDA the sequence starts with sensing of the environment, next is understanding, then attention and last is the selection of an action and its execution. These cycles run constantly, and even several of them runs at the same time just in different stages. So when one cycle is finishing broadcasting from the global workspace another can be starting in the sensing phase. 
