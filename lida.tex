@@ -20,7 +20,7 @@ The computational model of LIDA views the artificial agent's ``life'' as a serie
 \paragraph{Understanding phase}
 In the understanding phase sensory input is tagged with semantic meaning. First low-level feature detectors in the Sensory Memory are run on the incoming stimuli. The output from these is passed onto the Perceptual Associative Memory. There higher-level feature detectors are run, which recognise abstracted entities like objects, events, actions, etc. The output of these is sent to the Workspace, from where it is pushed to both the Transient Episodic Memory and the Declarative Memory. Local associations generated from these memory modules are combined with the percept to generate a Current Situational Model, which is the agent's ``inner map'' of how the world looks.
 \paragraph{Attention phase} Parts of the Current Situational Model is composited together to coalitions by Attention Codelets. These coalitions are put into the Global Workspace. From the Global Workspace a codelet selects the coalition in most need of conscious attention and broadcasts this.
-\paragraph{Action selection phase} The Action Selection module takes in possible action schemes from the Procedural Memory, and selects one of these according to a competetive process. The selected action scheme is sent to the Sensory-Motor Memory, where it is executed. This method of action selection is based on Maes' behaviour net.\cite{maes1989right} Learning is also done in the action selection phase. In the Perceptual Associative Memory new entities and associations are created and old ones are reinforced during this phase. In the Transient Episodic Memory events from the broadcast from the Global Workspace are stored. The Procedural Memory stores new possible action schemes from the broadcast, and reinforces old ones.
+\paragraph{Action selection phase} The Action Selection module takes in possible action schemes (behaviours) from the Procedural Memory, and selects one of these according to a competetive process. The selected action scheme is sent to the Sensory-Motor Memory, where it is executed. This method of action selection is based on Maes' behaviour net.\cite{maes1989right} Learning is also done in the action selection phase. In the Perceptual Associative Memory new entities and associations are created and old ones are reinforced during this phase. In the Transient Episodic Memory events from the broadcast from the Global Workspace are stored. The Procedural Memory stores new possible action schemes from the broadcast, and reinforces old ones.
 
 
 \subsubsection{The workspace}
@@ -79,7 +79,7 @@ The modules with default implementations in the current version of the LIDA fram
 \paragraph{Declarative Memory} This is the long-term episodic memory, with a slow decay. Entries in the Transient Episodic Memory are moved here if they haven't decayed for a long period of time.
 
 Both the declarative and transient episodic memory are implemented as sparse distributed memory.\cite{kanerva1988sparse}
-
+\paragraph{Procedural Memory} This module contains behaviour schemes that are used to instantiate behaviours. Instantiated behaviours from this are sent to the action selection from procedural memory.
 \paragraph{Action Selection} In the current version of the framework this is implemented as a simple rule-based system, however in version 1.2 this is replaced with a behavioural net, inspired by Maes' nets.\cite{maes1989right}
 
 \subsubsection{Tasks}
@@ -146,3 +146,16 @@ The classes that does the initialization of the agent are in the {\em initializa
  \item Then the GUI properties file is loaded and all the GUI objects (including custom panels) are created.
  \item Finally the agent and GUI is loaded and displayed.
 \end{enumerate}
+
+\subsubsection{Parameter tweaking}
+Like any other (partially\footnote{LIDA is generally viewed as hybrid symbolic/sub-symbolic architecture.\cite{duch2008cognitive}}) sub-symbolic artificial intelligence system, parameter tweaking is very important and small changes in the parameters can completely change how the agent behaves and acts. In LIDA there are a lot of activation values and thresholds for when something is counted as activated. 
+
+The feature detectors are the first instances where activation is important. When they discover something from the input they send activation to one or more nodes in PAM, and this activation level will decide how important the model thinks this piece of information is. In addition to this, it will also have cascading effects on the system further down the line. When attention codelets compete about access to the global workspace and consciousness broadcast the activation of the nodes contained in the codelets context together with the initial activation value of the codelet itself makes up the total activation of the codelet. So if some of the nodes have low activation from the feature detectors the codelet that contains that node will also be judged as unimportant. 
+
+Learning base level activations are part of the LIDA model but are not yet implemented in the current version of the framework, so we haven't been able to utilize it. What it implies is that when some nodes have been important in the past this will make them more likely to be important in the future, and this should have an impact on the performance of the agent. 
+
+Both feature detectors and codelets in the framework are implemented as processes that run at specified intervals, defined by the number of ticks between each time they are run. Changing how often a process is run will also impact the agent in not always predictable ways. If you do not detect the presence of some piece of information in time, you might decide on an action that is not the optimal way to handle the situation, which you might have done if you had all the information available to you. If the period between the execution of a feature detector is to long, you can end up with the related PAM node decaying below the threshold for activation between each time the detector is run, but if the detector was run at more regular intervals it would stay activated constantly because the node would receive excitation after each run of the detector. 
+
+All the elements in the LIDA framework that has activation have different parameters for how this activation is received and decayed. Decay of elements are configured differently for different modules. In Declarative Memory elements decay at a very slow rate, if at all, while in PAM they decay during a very short period of time, usually just a few ticks long. The same options for configuration of excitation exists in the framework.
+
+To facilitate easy tweaking of parameters in LIDA most of them can and should be configurable from the XML definition of the agent. This makes changing and testing new values a lot easier then having to rewrite lines of code between runs.

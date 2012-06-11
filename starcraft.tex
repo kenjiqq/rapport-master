@@ -77,16 +77,24 @@ A unique Protoss feature is that all the units and buildings have shields that p
 \subsubsection{Micro vs. macro}
 Two well-known concepts in the RTS communities, and the StarCraft community in particular, are micro management and macro management. Macro management refers to large-scale economic and strategic decisions, while micro management refers to smaller-scale control of individual units, or groups of units.
 
-A good control of both concepts is needed for a successful agent.
+Good micro means being able to group units together effectively, e.g. to minimize ``splash'' damage taken, that is (splash damage is when attacks affect a larger area than a single unit, so that if the units stand too close together all of them take some damage when one of them is hit). Another one is being able to ``target fire'' (attacking a single unit), for example to quickly be able to take down already damaged enemy units.
+
+Good macro is essential to be able to utilize the good micro, however. Without good macro the opponent can simply flood you with units, without much regards for micro.
+
+So while exceptional good micro can balance out a lacking control of the macro management and vice versa, a good control of both is needed for a successful agent.
 
 \subsubsection{Supply}
 Supply is a term for an artificial limit imposed by the game on how many units a player is allowed to make at any time. To increase the supply, a player can build a special kind of units; for the Protoss race this is {\em pylons}, for Zerg it is {\em overlords} and for Terran it is {\em supply depots}. The name stems from the terran unit needed, supply depots.
 
+A player is not able to build more units unless supply for them is available. And because making supply costs money itself, when and how much supply to build is an interesting decision making problem.
+
 \subsubsection{Fog of war and scouting}
-Fog of war is a well-known term from RTS games, which denotes un-observed parts of the environment or map. In StarCraft this is shown as shaded on screen. This leads to partial observability, and gives rise to uncertainty about the rest of the map, about what the other player is doing and what resources he has exhausted. To counteract this, it is common to {\em scout}, that is, to send out units to simply observe the other player.
+Fog of war is a well-known term from RTS games, which denotes un-observed parts of the environment or map. In StarCraft this is shown as shaded on screen. This leads to partial observability, and gives rise to uncertainty about the rest of the map, about what the other player is doing and what resources he has exhausted. To counteract this, it is common to {\em scout}, that is, to send out units to simply observe the other player, and see where he for example expands to or how big his military might is, and when he moves out to attack.
+
+Good scouting can be essential, for many reasons. E.g. to see what kind of unit composition that needs to be countered, when to plan the counter-attack, whether one should prepare for a rushed attack or to expand and prepare for a drawn out, economically intensive game, etc.
 
 \subsection{BWAPI}
-To ease the development of third-party agents that play the game, an application programming interface (API) has been developed for StarCraft: Brood War, by third-party developers. They have relied on reverse engineering of the original game for developing it. It works by injecting itself into the process of the game, and hooking into various functions used in the game, as well as reading various memory areas directly.\cite{bwapi}
+To ease the development of third-party agents that play the game, an application programming interface (API) has been developed for StarCraft: Brood War, by third-party developers. They have relied on reverse engineering of the original game for developing it. It works by injecting itself into the process of the game, and hooking into various functions used in the game, as well as reading and writing various memory areas directly.\cite{bwapi}
 
 There has sprung up a sizable community around this effort, and there are several tournaments where programmers can participate with their own agents.\cite{bwapi}\cite{sscait}
 
