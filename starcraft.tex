@@ -12,7 +12,7 @@
 \end{figure}
 %General introduction to the game, with emphasis on the parts that we utilize most in our project
 
-StarCraft is a multi-player, real-time strategy (henceforth referred to as RTS) game, with a heavy focus on both economic strategies, as well as effective management of individual in-game units. Brood War is the expansion pack for the original StarCraft game that introduced new units, maps and upgrades. The game has been praised for its emergent complexity even though the mechanics are simple to understand. StarCraft: Brood War has been played on a high competetive level for over 10 years, and it has been evolving all that time with new strategies and tactics.
+StarCraft is a multi-player, real-time strategy(RTS) game, with a heavy focus on both economic strategies, as well as effective management of individual in-game units. Brood War is the expansion pack for the original StarCraft game that introduced new units, maps and upgrades. The game has been praised for its emergent complexity even though the mechanics are simple to understand. StarCraft: Brood War has been played on a high competetive level for over 10 years, and it has been evolving all that time with new strategies and tactics.
 
 \subsection{Races}
 The game has three races that a player selects between. The insect-like Zerg, the advanced alien race Protoss and the human
@@ -29,7 +29,7 @@ The terran are human colonists originally from earth. This is the most balanced 
 
 The Terran worker is a Space Construction Vehicle (SCV), and unique for Terran is that it can repair any mechanical unit or building if they are damaged. Another unique mechanic with Terran is that their buildings can lift off and fly around to reposition themselves.
 
-Several of the buildings can also be upgraded with addons that are smaller buildings that are constructed and connected to the main building. Addons unlock new upgrades and units to be constructed from the building it is connected to. Utilizing the lift off mechanic, buildings can swap addons after they are constructed. This increases the build order diversity, as addons can be switched between construction buildings.
+Several of the buildings can also be upgraded with addons that are smaller buildings that are constructed and connected to the main building. Addons unlock new upgrades and units to be constructed from the building it is connected to. Utilizing the lift off mechanic, buildings can swap addons after they are constructed. This increases the build order diversity, as addons can be switched between production buildings.
 
 All terran units can be healed after they take damage; the mechanical units and buildings can be repaired using an SCV (but doing so means that the worker will not be gathering resources for that time), and to heal damaged biological units you have to train special units called Medics.
 
@@ -41,10 +41,9 @@ All terran units can be healed after they take damage; the mechanical units and 
 \end{figure}
 
 The zerg is an insect-like collection of different biological races assimilated under a central intelligence.
-
 They rely on biological abilities that are selectively evolved instead of relying on technology like the other two races.
 
-The individual units in the Zerg army are usually not very powerful, but their strength lies in superior numbers of units as well as the ability to quickly reinforce the army with new units when some die.
+The individual units in the Zerg army are usually not very powerful, but their strength lies in superior numbers as well as the ability to quickly reinforce the army with new units when some die.
 
 The Zerg worker unit is called a drone. What separates this worker from the other races is that in order to create a new building the worker has to ``sacrifice'' itself to morph into the new building, the worker becomes the building.
 
@@ -77,26 +76,24 @@ A unique Protoss feature is that all the units and buildings have shields that p
 \subsubsection{Micro vs. macro}
 Two well-known concepts in the RTS communities, and the StarCraft community in particular, are micro management and macro management. Macro management refers to large-scale economic and strategic decisions, while micro management refers to smaller-scale control of individual units, or groups of units.
 
-Good micro means being able to group units together effectively, e.g. to minimize ``splash'' damage taken (splash damage is when attacks affect a larger area than a single unit, so that if the units stand too close together all of them take some damage when one of them is hit). Another one is being able to ``target fire'' (attacking a single unit), for example to quickly be able to take down already damaged enemy units.
+Good micro means being able to group units together effectively, e.g. to minimize ``splash'' damage taken (splash damage is when attacks affect a larger area than a single unit, so that if the units stand too close together all of them take some damage when one of them is hit). Another example is being able to ``target fire'' (attacking a single unit), for example to quickly be able to take down already damaged enemy units.
 
-Good macro is essential to be able to utilize the good micro, however. Without good macro the opponent can simply flood you with units, without much regards for micro.
+Good macro is essential to be able to take advantage of the good micro. Without good macro the opponent can simply flood you with units, without much regards for micro.
 
 So while exceptional good micro can balance out a lacking control of the macro management and vice versa, a good control of both is needed for a successful agent.
 
 \subsubsection{Supply}
-Supply is a term for an artificial limit imposed by the game on how many units a player is allowed to make at any time. To increase the supply, a player can build a special kind of units; for the Protoss race this is {\em pylons}, for Zerg it is {\em overlords} and for Terran it is {\em supply depots}. The name stems from the terran unit needed, supply depots.
+Supply is a term for a limit imposed by the game on how many units a player is allowed to posses at any given time. To increase the supply, a player can build a special kind of unit or structure; for the Protoss race this is {\em pylons}, for Zerg it is {\em overlords} and for Terran it is {\em supply depots}. The name stems from the terran unit needed, supply depots.
 
 A player is not able to build more units unless supply for them is available. And because making supply costs money itself, when and how much supply to build is an interesting decision making problem.
 
 \subsubsection{Fog of war and scouting}
-Fog of war is a well-known term from RTS games, which denotes unobserved parts of the environment or map. In StarCraft this is shown as shaded on-screen. This leads to partial observability, and gives rise to uncertainty about the rest of the map, about what the other player is doing and what resources he has exhausted. To counteract this, it is common to {\em scout}, that is, to send out units to simply observe the other player, and see where he for example expands to or how big his military might is, and when he moves out to attack.
-
-Good scouting can be essential, for many reasons. E.g. to see what kind of unit composition that needs to be countered, when to plan the counter-attack, whether one should prepare for a rushed attack or to expand and prepare for a drawn out, economically intensive game, etc.
+Fog of war is a well-known term from RTS games, which refers to unobserved parts of the environment or map. In StarCraft this is shown as fog that covers the map where you have no units. This leads to partial observability, and gives rise to uncertainty about the rest of the map, about what the other player is doing and what resources he has exhausted. To counteract this, it is common to {\em scout}, that is, to send out units to simply observe the other player, and see where he for example expands to or how big his military presence is, and when he moves out to attack.
 
 \subsection{BWAPI}
-To ease the development of third-party agents that play the game, an application programming interface (API) has been developed for StarCraft: Brood War, by third-party developers. They have relied on reverse engineering of the original game for developing it. It works by injecting itself into the process of the game, and hooking into various functions used in the game, as well as reading and writing various memory areas directly.\cite{bwapi}
+To ease the development of third-party agents that play the game, an application programming interface (API) has been developed for StarCraft: Brood War, by third-party developers. It works by injecting itself into the process the game runs in, and hooking into various functions used by the game, as well as reading and writing various memory areas directly.\cite{bwapi}
 
-There has sprung up a sizable community around this effort, and there are several tournaments where programmers can participate with their own agents.\cite{bwapi}\cite{sscait}
+There has grown a sizable community around this effort, and there are several tournaments where programmers can participate with their own agents.\cite{bwapi}\cite{sscait}
 
 There are also several third-party addons and extra libraries for easing the development of agents, such as the Brood War Terrain Analyzer (BWTA), which provides easy-to-use functions for analyzing the maps for finding choke-points and suitable locations for various buildings\cite{bwta}, and the Brood War Standard Addon Library (BWSAL) which is both a generic, modular framework for BWAPI agents as well as default implementations for a large part of the modules needed for implementing such an agent.\cite{bwsal}
 
