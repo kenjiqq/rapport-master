@@ -2,8 +2,8 @@
 
 \chapter{Evaluation}
 In this chapter we conclude our work by looking at the goals defined in the introduction, and evaluate the results.
-In Section \ref{sec:evalperf} we evaluate the in-game performance of our implementation.
 In Section \ref{sec:evalimp} we evaluate our implementation.
+In Section \ref{sec:evalperf} we evaluate the in-game performance of our implementation.
 Section \ref{sec:conclusion} contains the final conclusion for the project and this report.
 Section \ref{sec:futurework} contains our thoughts on further improvements that can be done on our project.
 
@@ -13,7 +13,7 @@ Our motivation for this project was to create an agent based on the LIDA model, 
 
 During the integration between LIDA and StarCraft we ran into a few problems. The most important one being that measurement of time in both processes are different. LIDA operates with ticks, where the length of a tick is dynamic, and is decided by the slowest LIDA process that is run in that specific tick. We had to sync these ticks up with the StarCraft measurement  of time which is frames. Because we have to pause the StarCraft game for each frame until the LIDA model returns from that tick this will probably disqualify the agent from participating in certain tournaments.
 
-We discovered that because StarCraft is such a complex game with so many different possible states and situations the amount of feature detectors you have make a very significant impact on the performance of the agent. We only implemented some basic feature detectors to give the agent enough information about the environment to perform some simple tasks that made for some competition for the built-in AI in the game. But we constantly observed the agent getting into situations that for us as human observers was very clear, but the agent didn't see them. Examples of this was, base trading where the game AI would attack us at the same time as we moved out to attack them, but we didn't detect this so our agent never turned around to defend against this attack.
+We discovered that because StarCraft is such a complex game with so many different possible states and situations the amount of feature detectors you have make a very significant impact on the performance of the agent. We only implemented some basic feature detectors to give the agent enough information about the environment to perform some simple tasks that made for some competition for the built-in AI in the game. But we constantly observed the agent getting into situations that for us as human observers was very clear, but the agent didn't see them. One such situation that happened repeatedly was that the game AI would attack us at the same time as we moved out to attack them. And because our agent wasn't capable of detecting this, he would never turned around to defend his own base against this attack.
 
 But for every situation that we observed we could not deal with, there was obvious that simply more detectors would be able to parse this data and understand the situation. We were unable to see anything that would be outside the scope of reasoning with and handling in our architecture, if it had the right set of information to work with. Expanding upon the set of feature detectors would probably be one of the main priorities for improving the performance of the agent.
 
@@ -26,7 +26,8 @@ Another important aspect that the LIDA framework is currently missing that is de
 The work we have done with integrating and  implementation for our agent should simplify the work of anyone else intending to do something similar. Our domain-specific classes should provide everything needed for any kind of agent using the LIDA framework for StarCraft: Brood War, and our implemented feature detectors and behaviour should be a good starting point, as well as a good example for other feature detectors and schemes one needs to implement to create more complex behaviors for the agent.
 
 \section{Evaluation of Agent Performance}
-From the performance tests we ended up with a win ratio of 35\%. That is not to high, but it was also never our goal to create the perfect agent. Every time we lost it was usually because the agent ended up in a situation where it didn't have the correct detectors and behaviours to handle that situation. This should mean that it is only a matter of extending on the implementation to improve the performance of the bot. The underlaying method seems to be working just fine when the environment is simple enough for this implementation to handle, so it should scale well with more complex detectors and schemes. 
+\label{sec:evalperf}
+From the performance tests we ended up with a win ratio of 35\%. That is not to high, but it was also never our goal to create the perfect agent. Each time we lost, it was usually because the agent ended up in a situation where it didn't have the correct detectors and behaviours to handle that situation. This should mean that it is only a matter of extending on the implementation to improve the performance of the bot. The underlaying method seems to be working just fine when the environment is simple enough for this implementation to handle, so it should scale well with more complex detectors and schemes. 
 
 The problems we encountered that made us lose games was for instance that our agent does not detect the presence of enemy units attacking us, and we therefore rely on the built-in auto attack of enemy units for protection of our base. This often leads us to ``base-trades'', where we are able to destroy the enemy base, but are unable to protect our own.
 We also lack any kind of advanced micro behavior, which means we utilize the units produced very badly. This means that early aggression was very ineffective because they requite good micro of a few units, so we ended up removing that behavior from the agent. We also had big problems when the enemy created base defenses, like Protoss canons and Zerg spine crawlers. One observed behavior a long line of zealots simply marching into the line of fire of a canon, so they were cut down one by one. A more effective strategy here would be to group up the units, so some of them would be able to reach the canon and possibly destroy it.
@@ -36,7 +37,8 @@ Our agents also never expands to additional bases. While this made things easier
 
 \section{Conclusion}
 \label{sec:conclusion}
-We succeeded in achieving what we set out to do, and while the in-game performance was not excellent, we think it is a very good starting point for any future work in this area.
+Our goals for his project was to integrate a cognitive model with BWAPI so we could build a proof of concept artificial intelligence agent that played StarCraft using cognitive methodologies. 
+We succeeded in creating this in the form of the java agent Jantu that runs the LIDA framework on top of java bindings for BWAPI. We discovered several limitation with the method, most of whom has to do with missing features in the framework that will be implemented in the future. And while the in-game performance was not excellent, we think it is a very good starting point for any future work in this area.
 
 \section{Future Work}
 \label{sec:futurework}

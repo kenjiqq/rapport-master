@@ -10,17 +10,17 @@ In Section \ref{sec:actionexecution} we explain how action are executed.
 
 \section{Overview}
 \label{sec:overview}
-We chose the LIDA framework to work with both because it has a strong theoretical underpinning, and also because it is is easily available and is well-documented and has an active community working with and on it. Because of this we also needed to use JNIBWAPI for our agent, because LIDA is written in Java.
+We chose to use the LIDA framework because it is built on a strong theoretical foundation of core cognitive principals. Even though the framework is currently, at the time of this writing, only in a beta version it is well-documented and has an active community working on improving it. Because LIDA is written in Java we had to use JNI-BWAPI since it provides Java bindings for BWAPI. 
 
-We also chose to ``cheat'' in our implementation by enabling perfect information in BWAPI, so we wouldn't need to implement behaviour for scouting yet.
+We made the decision to allow our agent access to perfect information about the environment in StarCraft, this means that it can see the hole map and all the units on the map without having to scout first. We did this because it simplified our implementation and made it easier to begin with to create an agent that functioned in a decent capacity. With the same reasoning in mind, we decided that we would go for a simple strategy in our games, and limit our self to only use one race. So we decided to use the Protoss race, and our strategy involved building gateways, that are the the basic unit production building for Protoss, and then producing an army consisting of Zealots, a basic close ranged melee unit. 
 
 \section{Integration}
 \label{sec:integration}
-BWAPI itself provides only a basic C++ API, so JNIBWAPI provides, as explained in Chapter \ref{sec:starcrafttheory}, a custom Java API using the Java Native Interface, JNI.\cite{jni} Because we can't load an entire Java VM into the StarCraft process, we use shared memory to connect the StarCraft process with the process of our agent. A small gotcha we found is that to do this you need to run the processes with Administrator privileges in Windows.
+BWAPI itself provides only a basic C++ API, so JNIBWAPI provides, as explained in Chapter \ref{sec:starcrafttheory}, a custom Java API using the Java Native Interface, JNI.\cite{jni} Because we can't load an entire Java VM into the StarCraft process, we use shared memory to connect the StarCraft process with the process of our agent. Because the processes manipulates the same shared memory area both processes needs to be ran with Administrator privileges in Windows.
 
 We also updated JNIBWAPI to adapt to some minor recent changes in BWAPI, and added in some missing functionality that we needed for controlling the game, like starting, pausing and restarting the on-going game.
 
-But to use the LIDA framework we had to integrate LIDA with JNIBWAPI. To accomplish this we implement the domain specific modules of the LIDA framework to make calls to JNIBWAPI.
+In order to use the LIDA framework we had to integrate LIDA with JNIBWAPI. To accomplish this we implement the domain specific modules of the LIDA framework to make calls to JNIBWAPI.
 
 \begin{figure}[h!tb]
 \centering
@@ -62,28 +62,28 @@ Feature detectors can be created that detect almost every aspect of the game, an
 Following are brief descriptions of the detectors we have implemented.
 
 \subsubsection{IdleWorkerFeatureDetector}
-This feature detector identifies worker units that don't have a job. A worker could be gathering resources, constructing buildings or scouting, but for efficiency it should be doing something at all times.
+Identifies worker units that don't have a job. A worker could be gathering resources, constructing buildings or scouting, but for efficiency it should be doing something at all times.
 
 \subsubsection{ResourceFeatureDetector}
-This feature detector identifies what type of units and buildings that we currently have enough resources available to create. This can be buildings we can construct, units we can morph or upgrades that we can research.
+Identifies what type of units and buildings that we currently have enough resources available to create. This can be buildings we can construct, units we can morph or upgrades that we can research.
 
 \subsubsection{SupplyBlockFeatureDetector}
-This feature detector identifies when we are getting close to being supply blocked, that means that we can't build any more units until another supply-granting building/unit is created.
+Identifies when we are getting close to being supply blocked, that means that we can't build any more units until another supply-granting building/unit is created.
 
 \subsubsection{UnsaturatedResourcesFeatureDetector}
-This feature detector identifies whether or not our available resource nodes have are saturated with enough workers that are gathering them. This can be used to decide if we need to build more workers or not.
+Identifies whether or not our available resource nodes have are saturated with enough workers that are gathering them. This can be used to decide if we need to build more workers or not.
 
 \subsubsection{BuildOrderFeatureDetector}
-This feature detector identifies what type of building we need to construct for our next step in the planned build order. For our simple implementation it detects if we have more resource generation then unit production buildings, so we need to expand our capacity by adding new ones.
+Identifies what type of building we need to construct for our next step in the planned build order. For our simple implementation it detects if we have more resource generation then unit production buildings, so we need to expand our capacity by adding new ones.
 
 \subsubsection{IdleProductionFeatureDetector}
-This feature detector identifies when a production building is currently not training any units. In StarCraft being effective with the resources you have available is important, therefore not queuing units on a production building is important, but instead only building new units when production buildings are idle.
+Identifies when a production building is currently not training any units. In StarCraft being effective with the resources you have available is important, therefore not queuing units on a production building is important, but instead only building new units when production buildings are idle.
 
 \subsubsection{StructureFeatureDetector}
-This feature detector identifies the buildings we have. This is important to know because we might not want to build another of the same building, and for unit production it is important to know what kind of production buildings we have available.
+Identifies the buildings we have. This is important to know because we might not want to build another of the same building, and for unit production it is important to know what kind of production buildings we have available.
 
 \subsubsection{TimingAttackFeatureDetector}
-This feature detector identifies when it is time to attack the enemy. In our current implementation is a very simple detector that just waits until we have collected a substantial army of units and then activates to ``detect'' that it is now time to attack.
+Identifies when it is time to attack the enemy. In our current implementation is a very simple detector that just waits until we have collected a substantial army of units and then activates to ``detect'' that it is now time to attack.
 
 \section{Attention Module}
 \label{sec:attention}
