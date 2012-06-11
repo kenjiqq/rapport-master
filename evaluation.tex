@@ -8,18 +8,28 @@ Section \ref{sec:conclusion} contains the final conclusion for the project and t
 Section \ref{sec:futurework} contains our thoughts on future implementation and improvements of our solution.
 
 
+\section{Evaluation of Agent Performance}
+While our agent makes poor decisions, this seems to stem mostly both from a lack of complex learning abilities, and from a lack of basic behaviours and feature detectors.
+
+For instance, our agent does not detect the presence of enemy units at all, and we therefore rely on the built-in auto attack of enemy units for protection of our base. This often leads to ``base-trades'', where we are able to destroy the enemy base, but are unable to protect our own.
+
+We also lack any kind of advanced microing behaviour, which means we utilize the units produced very badly. One observed behaviour was simply marching a long line of zealots into the line of fire of a canon, so they were cut down one by one. A more effective strategy here would be to group them up beforehand, so at least some of them would be able to reach the canon and possibly kill it.
+
+Another issue is that our bot only builds one particular unit. This makes it very easy for a human to counter, for example with air units, which the zealots are unable to attack.
+
+Another pretty grave flaw in our agents behaviour is that it never expands to several bases. While this made things easier to implement (positioning of units etc. became trivial), it means that if we don't win quickly, we will run out of minerals, and we will be at a severe economic disadvantage if/when the opponent expands to several bases.
+
+But while the actual performance of the agent is not at a high-level, we can see that it is already working in a human-like fashion, switching conscious attention between the things that need to be done, and acting on it.
+
 \section{Evaluation of Implementation}
 \label{sec:evalres}
 Our motivation for this project was to create an agent, using LIDA, that could play StarCraft: Brood War, which we did by implementing a simple proof of concept agent using the LIDA framework. We also discovered some of the problems inherent in the use of this cognitive architecture for this domain.
 
-Because of limitations in the rule-based system currently used for action selection, we had to simplify some parts of our system. E.g., the decision about which building to build next was massively simplified compared to what a full, cognitive agent would have. Instead of using proper reasoning, we estimated whether we would be able to use the current amount of income.
-
-\section{Evaluation of Agent Performance}
-Our agent lost more then he won against the StartCraft AI, but with most games he lost it was a simple fact of not having enough sensors and rules to handle the current situation effectivly. 
+While the performance of the agent itself left a lot to be desired, the work we implemented for our agent we believe will massively simplify the work of anyone else intending to do something similar. Our domain-specific classes should provide everything needed for any kind of agent using the LIDA framework for StarCraft: Brood War, and our implemented feature detectors and behaviour should be a good starting point, as well as a good example for other feature detectors and behaviours one needs to implement.
 
 \section{Conclusion}
 \label{sec:conclusion}
-We succeded in achieving what we set out to do, and while the performance was not excellent, we think it is a very good starting point for any future work in this area.
+We succeded in achieving what we set out to do, and while the in-game performance was not excellent, we think it is a very good starting point for any future work in this area.
 
 \section{Future Work}
 \label{sec:futurework}
