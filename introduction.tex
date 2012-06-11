@@ -1,7 +1,7 @@
 %!TEX root = main.tex
 
 \chapter{Introduction}
-In this chapter we introduce our project. Section \ref{sec:background} presents the background and our motivation for the project, a short introduction to Starcraft and the API we will use and describes what we will do in this project and our main goals. Section \ref{sec:goals} explains the goals we hope to accomplish during the project. Section \ref{sec:structure} introduces the structure of this report.
+In this chapter we introduce our project. Section \ref{sec:background} presents the background and our motivation for the project and describes what we will do in this project and our main goals that we will accomplish. Section \ref{sec:name} is a short description of the where the name for the agent comes from. Section \ref{sec:structure} introduces the structure of this report.
 
 \section{Background and Motivation}
 \label{sec:background}
@@ -15,30 +15,28 @@ As an answer to this the Brood War Application programming interface(BWAPI) was 
 
 While just winning the game is an interesting and worthy goal, it is according to Arrabales et al much more engaging for human players to play with other humans than with artificial agents.\cite{arrabales2009gamechars} We therefore think that developing human-like intelligence for playing computer games is something that should have a greater focus then it has had so far. Cognitive architectures are based around trying to emulate how the human consciousness works and acts in certain situations. There has been done very little research so far into using cognitive agents for playing RTS games, but they have been utilized with great success in first person shooter games previously. %%TODO mabye find a source for this?	
 
-\section{Name}
+\section{The Project}
+In this project we will implement a proof of concept cognitive agent that plays StarCraft: Brood War. We will be using the a cognitive framework called LIDA in our implementation. The first step in the project will be to integrate the LIDA framework with StarCraft and BWAPI, so the LIDA cognitive framework can control the StarCraft agent. We also need to create a bridge between the in-game time reference called frames, and the frameworks time references called ticks. After accomplishing this we should be able to control the execution of StarCraft from our framework, so we can pause, resume and step frame by frame and tick by tick for debugging perhapses. 
+
+Next step will be to create a proof of concept implementation of a cognitive bot that can play the game, with decent results. This will allow us to investigate what kind of challenges present themselves when one implements an agent like this, and where there is room for improvement, and what the future might look like.
+
+\section{The Name}
 \label{sec:name}
 The name {\em Jantu} is hindi, and is translated as ``Pertaining to the merely sentient part of a creature, as distinguished from the intellectual, rational, or spiritual part; as, the animal passions or appetites.''\cite{hindijantu}, which reflects what we are trying to achieve with our work in this project.
 
-\section{Project goals}
-\label{sec:goals}
-First and foremost we set out to create a proof of concept agent that could play the game StarCraft: Brood War, built using a cognitive architecture.
-
-Secondly we wanted to see what kind of challenges present themselves when one implements an agent like this, and where there is room for improvement, and what the future might look like.
-
 \section{Report Structure}
 \label{sec:structure}
-This report is structured into four chapters:
+This report is structured into five main chapters:
 \begin{itemize}
 \item Chapter 1: \textbf{Introduction} \\
-This chapter describes the motivation and goal of the project as well as who
-contributed and the general structure of the report.
+This chapter describes the background and motivation, as well as what we hope to accomplish during the project. It also layouts the general structure of the report.
 \item Chapter 2: \textbf{Theory} \\
-Here we present the domain we're working in; the real-time computer strategy game StarCraft: Brood War. We also present the cognitive architecture we're using.
+In this chapter we presents the relevant theory for understanding the tools and technologies used during the project. We presents some general information about StarCraft as a game, we also present some theory on the cognitive architectures in general, and more detailed about the framework we will be using. 
 \item Chapter 3: \textbf{Implementation} \\
-This chapter presents our implementation.
+In this chapter we present how we integrated the framework with StarCraft and what features we implemented for our agent.
 \item Chapter 4: \textbf{Results} \\
-This chapter presents how our implementation performed.
+In this chapter we present the results of running the agent, how well it performed and some insight into how the bot ended up interpreting and acting in the given environment. 
 \item Chapter 5: \textbf{Evaluation} \\
-Here we summarize and evaluate the work presented in this report.
+Here we summarize and evaluate results and the project. We discuss what the agent did good and why it had problems in the situations it did. We also outline how we think the agent can be improved in the future. 
 
 \end{itemize}
