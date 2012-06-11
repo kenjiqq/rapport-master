@@ -2,7 +2,7 @@
 
 \chapter{Implementation}
 In this chapter we describe how we implemented the project.
-Section \ref{sec:overview} we explain why we did what we did.
+In Section \ref{sec:overview} we explain why we did what we did.
 In Section \ref{sec:integration} we explain how we integrated BWAPI with LIDA.
 Section \ref{sec:detectors} explains the feature detectors we made.
 In Section \ref{sec:attention} we explain how we manage attention in our agent.
@@ -10,9 +10,9 @@ In Section \ref{sec:actionexecution} we explain how action are executed.
 
 \section{Overview}
 \label{sec:overview}
-We chose to use the LIDA framework because it is built on a strong theoretical foundation of core cognitive principals. Even though the framework is currently, at the time of this writing, only in a beta version it is well-documented and has an active community working on improving it. Because LIDA is written in Java we had to use JNI-BWAPI since it provides Java bindings for BWAPI. 
+We chose to use the LIDA framework because it is built on a strong theoretical foundation of core cognitive principals. Even though the framework is currently, at the time of this writing, only in a beta version it is well-documented and has an active community working on improving it. Because LIDA is written in Java we had to use JNI-BWAPI since it provides Java bindings for BWAPI.
 
-We made the decision to allow our agent access to perfect information about the environment in StarCraft, this means that it can see the hole map and all the units on the map without having to scout first. We did this because it simplified our implementation and made it easier to begin with to create an agent that functioned in a decent capacity. With the same reasoning in mind, we decided that we would go for a simple strategy in our games, and limit our self to only use one race. So we decided to use the Protoss race, and our strategy involved building gateways, that are the the basic unit production building for Protoss, and then producing an army consisting of Zealots, a basic close ranged melee unit. 
+We made the decision to allow our agent access to perfect information about the environment in StarCraft, this means that it can see the whole map and all the units on the map without having to scout first. We did this because it simplified our implementation and made it easier to begin with to create an agent that functioned decently. With the same reasoning in mind, we decided that we would go for a simple strategy in our games, and limit our self to only use one race. So we decided to use the Protoss race, and our strategy involved building gateways, that are the the basic unit production building for Protoss, and then producing an army consisting of Zealots, a basic close-range melee unit.
 
 \section{Integration}
 \label{sec:integration}
@@ -62,7 +62,7 @@ Feature detectors can be created that detect almost every aspect of the game, an
 Following are brief descriptions of the detectors we have implemented.
 
 \subsubsection{IdleWorkerFeatureDetector}
-Identifies worker units that don't have a job. A worker could be gathering resources, constructing buildings or scouting, but for efficiency it should be doing something at all times.
+Identifies worker units that don't have a job. A worker could be gathering resources, constructing buildings or scouting, and for efficiency it should be doing something at all times.
 
 \subsubsection{ResourceFeatureDetector}
 Identifies what type of units and buildings that we currently have enough resources available to create. This can be buildings we can construct, units we can morph or upgrades that we can research.
@@ -112,7 +112,7 @@ This codelet looks for any node that is a child from the strategy node. These ar
 
 \section{Action Execution}
 \label{sec:actionexecution}
-After LIDA has selected a focus of consciousness and an appropriate action has been selected from the behaviour net, the selected action must be executed. This gets executed by having the sensory-motor memory make function calls to the environment class, which functions as the interface between LIDA and JNI-BWAPI.
+After LIDA has selected a focus of consciousness and an appropriate action has been selected from the behaviour net, the selected action must be executed. This gets executed by having the sensory-motor memory make function calls to the environment class, which functions as a bridge between LIDA and JNI-BWAPI.
 
 How the action is implemented in the sensory-memory is up to the developer, as long as it performs its given function. It can be really simple implementation or you could do something more complex, LIDA is there to decide what parts or game state to focus on, and to make the decision on what action to perform, not how that action is executed.
 
@@ -127,10 +127,10 @@ This action starts training a worker unit at the main building in the home base,
 This action constructs a building or unit that grants increased supply. This can be a building or a unit depending on the race. For Protoss it creates a structure called a pylon that grants more available maximum supply.
 
 \subsubsection{Build gateway}
-This action works in much the same way as {\em Build supply} except that it creates a production building called gateway. This building is used to warp in(train) army units.
+This action works in much the same way as {\em Build supply} except that it creates a production building called gateway. This building is used to warp in (train) army units.
 
 \subsubsection{Train zealot}
 This action sets a zealot for training at an available gateway that is currently not training any other units. It is important that it doesn't queue it at a gateway that is already training another unit since it locks up resources and is inefficient.
 
 \subsubsection{Attack}
-This action executes an attack on enemy units. It can be a very simple action like in our implementation where it just used every available army unit and attacks the enemy, or it could be more complex like using groups of units for different attacks. Also worth noting that if you are not using perfect information then you can only attack units that you have seen by scouting or being invaded.
+This action executes an attack on enemy units. It can be a very simple action like in our implementation where it just used every available army unit and attacks the enemy, or it could be more complex like using groups of units for different attacks. Also worth noting that if you are not using perfect information then you can only attack units that you have seen by scouting, you are being invaded by or otherwise manage to see.

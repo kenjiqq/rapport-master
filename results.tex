@@ -30,7 +30,7 @@ Table \ref{tab:test_results} shows the results from the performance test. After 
 
 \section{A cognitive cycle}
 \label{sec:cycle}
-A cognitive cycle is the sequence of processes that the cognitive model has to go through from sensing to execution of an action. In LIDA the sequence starts with sensing of the environment, next is understanding, then attention and last is the selection of an action and its execution. These cycles run constantly, and even several of them runs at the same time just in different stages. So when one cycle is finishing broadcasting from the global workspace another can be starting in the sensing phase.
+A cognitive cycle is the sequence of processes that the cognitive model has to go through from sensing to execution of an action. In LIDA the sequence starts with sensing of the environment, next is understanding, then attention and last is the selection of an action and its execution. These cycles run constantly and repeatedly for the ``lifetime'' of the agent.
 
 Following we describe the complete cognitive cycle that ends with the creation of a new worker unit.
 
@@ -90,7 +90,7 @@ The last phase of the LIDA cognitive cycle is the action selection. The first st
 \label{fig:proceduralmemory}
 \end{figure}
 
-After some schemes are activated into behaviors they are received by the Action Selection module, where the final decision about what action is going to be performed in this cycle taken. The LIDA module describes this module as a behavior network\cite{maes1989right}. But in the current version of the LIDA framework this has not been implemented yet. So in the current version the Action Selection module is very simplified, which makes it harder to do complex action selections. The current action selection mainly just selects the behavior with the highest activation. So the real selection actually happens in the Procedural Memory. But with the release of the next version of the framework that should change(May 2012). Figure \ref{fig:actionselection} shows the content of the Action Selection module for this cognitive cycle. Our one behavior doesn't have any competition so it is selected as the action to perform this cycle. Below are a list of the five last performed actions in past cycles.
+After some schemes are activated into behaviors they are received by the Action Selection module, where the final decision about what action is going to be performed in this cycle is taken. The LIDA module describes this module as a behavior network\cite{maes1989right}. But in the current version of the LIDA framework this has not been implemented yet. So in the current version the Action Selection module is very simplified, which makes it harder to do complex action selections. The current action selection mainly just selects the behavior with the highest activation. So the real selection actually happens in the Procedural Memory. But with the release of the next version of the framework that should change(May 2012). Figure \ref{fig:actionselection} shows the content of the Action Selection module for this cognitive cycle. Our one behavior doesn't have any competition so it is selected as the action to perform this cycle. Below are a list of the five last performed actions in past cycles.
 
 \begin{figure}[h!tb]
 \centering
