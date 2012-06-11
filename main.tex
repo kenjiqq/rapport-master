@@ -1,6 +1,5 @@
-% Set a sane document class, 10pt font, and a report template
+% Set a sane document class, 12pt font, and a report template
 \documentclass[a4paper, twoside, openright, 12pt]{report}
-
 
 % Import used packages
 \usepackage{graphicx}
@@ -48,6 +47,7 @@ pdfproducer = {pdflatex}}
 
 \begin{document}
 
+% Abstract in english
 \begin{abstract}
 It has been shown that most players enjoys playing versus other human players over computer controlled opponents, but most research on artificial intelligence in gaming today focus on winning in the most effective way possible.
 
@@ -58,6 +58,7 @@ In this paper we aim to research the use of a cognitive model that is capable of
 \thispagestyle{empty}
 \cleardoublepage
 
+% Abstract in norwegian
 \renewcommand{\abstractname}{Sammendrag}
 \begin{abstract}
 Det har vist seg at folk som spiller spill foretrekker å spille mot andre mennesker, i motsetning til å spille mot kunstige spillere, men størstedelen av forskningen på kunstig intelligens i spill i dag fokuserer mer på å vinne mest mulig effektivt.
@@ -69,9 +70,7 @@ I denne teksten vil vi undersøke bruken av en kognitiv modell for å spille Sta
 \thispagestyle{empty}
 \cleardoublepage
 
-
-
-
+% Acknowledgements
 \renewcommand{\abstractname}{Acknowledgements}
 \begin{abstract}
 Firstly we would also like to thank our supervisors; Helge Langseth and Anders Kofod-Petersen. We would also like to thank the Cognitive Computing Research Group at the University of Memphis, for their LIDA framework which is the basis of our project. Finally we would like to thank the developers of the BWAPI project, and in particular Adam Heinermann, as well as the rest of the members in the \#BWAPI IRC channel on Freenode.
@@ -81,14 +80,20 @@ Firstly we would also like to thank our supervisors; Helge Langseth and Anders K
 
 \pagenumbering{roman}
 
+% TOC
 \tableofcontents
 \cleardoublepage
+
+% Figures
 \listoffigures
 \cleardoublepage
-%\listoftables
-\thispagestyle{empty}
+
+% Tables
+\listoftables
 \cleardoublepage
 
+
+% Content
 \pagestyle{fancy}
 \pagenumbering{arabic}
 
@@ -102,6 +107,6 @@ Firstly we would also like to thank our supervisors; Helge Langseth and Anders K
 \cleardoublepage
 \phantomsection
 \addcontentsline{toc}{chapter}{Bibliography}
-\printbibliography[segment=0]
+\printbibliography
 
 \end{document}
