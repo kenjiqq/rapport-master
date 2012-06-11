@@ -39,9 +39,10 @@ Our agents also never expands to additional bases. While this made things easier
 \section{Conclusion}
 \label{sec:conclusion}
 Our goals for his project was to integrate a cognitive model with BWAPI so we could use this as a base for building a proof of concept artificial intelligence agent that played StarCraft using cognitive methodologies.
-We succeeded in creating this in the form of the Java agent Jantu that runs the LIDA framework on top of Java bindings for BWAPI. We discovered several limitation with the method, most of whom has to do with missing features in the framework that will be implemented in future releases. And while the in-game performance was not excellent, we think it is a very good starting point for any future work in this area.
 
-We discovered that the domain of StarCraft is big, and that there are a lot of different situations that an AI agent will have to handle if it is going to perform well over time. For a cognitive implementation this means that it will require a lot of different feature detectors and schemes to handle every situation it might encounter. There is a question about how well this will scale when you start added a lot of detectors and schemes, and mostly if it will become hard to keep track of the different states that will occur in Action Selection as the complexity grows.
+We succeeded in creating this in the form of the Java agent Jantu that runs the LIDA framework on top of Java bindings for BWAPI. We discovered several limitation with the method, most of whom has to do with missing features in the framework that will be implemented in future releases. And while the in-game performance was not excellent, it is a very good starting point for any future work in this area.
+
+We discovered that the domain of StarCraft is big, and that there are a lot of different situations that an AI agent will have to handle if it is going to perform well over time. For a cognitive implementation this means that it will require a lot of different feature detectors and schemes to handle every situation it might encounter. It is not given, however, that it will scale well when you start adding a lot of detectors and schemes, and it might become hard to keep track of the different states that will occur in Action Selection as the complexity grows.
 
 \section{Future Work}
 \label{sec:futurework}
