@@ -2,7 +2,7 @@
 
 \section{LIDA}
 \label{sec:lida}
-LIDA is both the name of a cognitive model and a software framework based on the cognitive model. Both are developed at the Cognitive Computing Research Group\footnote{\href{http://ccrg.cs.memphis.edu/}{\tt http://ccrg.cs.memphis.edu/}} at the University of Memphis. The LIDA framework is currently in beta, but is on the tested and tried IDA project.
+LIDA is both the name of a cognitive model and a software framework based on the cognitive model. Both are developed at the Cognitive Computing Research Group\footnote{\href{http://ccrg.cs.memphis.edu/}{\tt http://ccrg.cs.memphis.edu/}} at the University of Memphis. The LIDA framework is currently in beta, but it is based on the well-tested IDA project.
 
 \subsection{The LIDA model}
 \begin{figure}[h!tb]
@@ -28,13 +28,13 @@ The workspace is composed of three main modules; the Current Situational Model, 
 
 \paragraph{Current Situational Model} This is where the internal ``map'' of the agent is represented. This contains current events that are linked to associations. Various structure-building codelets running in the Workspace are responsible for building these.
 \paragraph{Scratchpad} The Scratchpad is used for temporary storage for the codelets while they build up structures before moving into Current Situational Model.
-\paragraph{Conscious Contents Queue} This contains a list of previous broadcasts, which allows LIDA to take time into account, and reason on things that happens over time.
+\paragraph{Conscious Contents Queue} This contains a list of previous broadcasts, which allows LIDA to take time into account, and reason on, things that happens over time.
 
 \subsection{LIDA framework}
 \subsubsection{Background}
 The LIDA framework implements a growing subset of the full computational LIDA model in a re-usable Java-based software framework.
 
-While LIDA seems to have started simply as an extension for the IDA agent with added learning modes,\cite{franklin2007lida} it has evolved into a generic AGI framework, which can be used for other models than LIDA, because of the modular nature of the framework.\cite{snaider2011lida}
+While LIDA seems to have started simply as an extension for the IDA agent with added learning modes\cite{franklin2007lida}, it has evolved into a generic AGI framework, which can be used for other models than LIDA, because of the modular nature of the framework.\cite{snaider2011lida}
 
 The reason for using a framework is that software projects implementing cognitive models tend to grow fairly large and complex therefore difficult to both implement in the first place and maintain over time.
 
@@ -50,7 +50,7 @@ The main parts of it are the modules, tasks, common internal representations, a 
 \subsubsection{Modules}
 The modules are collections of tightly coupled data and processes that operate on them. The coupling between the various modules usually is very loose, however.
 
-Domain independent modules in the LIDA model have full implementations in the framework, while domain-dependent ones only have abstract implementations that has to be provided by implementations that use the framework.
+Domain independent modules in the LIDA model have full implementations in the framework, while domain-dependent ones only have abstract implementations that has to be provided by developers that use the framework.
 
 Modules are arranged in a hierarchy; for example the Workspace module has a submodule that represents the Current Situational Model.
 
@@ -85,7 +85,7 @@ Both the declarative and transient episodic memory are implemented as sparse dis
 \subsubsection{Tasks}
 These are small processes implemented as short-lived algorithms that reflect the {\em codelets} and other processes in the LIDA model. The implementation class is called {\em FrameworkTask}.
 
-Tasks are spawned by a separate class, the TaskSpawner, which classes that need to spawn tasks interact with. Tasks are scheduled for execution at particular ``ticks'', which are the time units used in the framework. The task manager runs the Task's ``runThisFrameworkTask'' method each time it is scheduled for execution. Tasks can either be run once, or repeatedly, depending on the type of task it is. For example an ExciteTask, which is used for passing activation, is run once, while feature detector tasks are run repeatedly on input.
+Tasks are spawned by a separate class, the TaskSpawner, which classes that need to spawn tasks interact with. Tasks are scheduled for execution at particular ``ticks'', which are the time units used in the framework. The task manager runs the Task's {\em runThisFrameworkTask} method each time it is scheduled for execution. Tasks can either be run once, or repeatedly, depending on the type of task it is. For example an ExciteTask, which is used for passing activation, is run once, while feature detector tasks are run repeatedly on input.
 
 When a task has finished executing it is returned to the TaskSpawner which processes the results and decides whether the task should be rescheduled for execution.
 
