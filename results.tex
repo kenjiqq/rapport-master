@@ -1,9 +1,10 @@
 %!TEX root = main.tex
 
 \chapter{Results}
-This chapter presents results of how our implementation performed.
+In this chapter we present the results of what we have created. In Section \ref{sec:performance} we look at how we performed against the built-in AI in StarCraft: Brood War, and in Section \ref{sec:cycle} we review how a cognitive cycle was evaluated in our finished agent.
 
 \section{Agent performance}
+\label{sec:performance}
 In this section we describe the performance test we ran and the results that it yielded.
 \subsection{The test}
 To measure how well the agent performed when it played we ran 50 games against the built-in AI in StarCraft Brood War. We only ran 50 games because the performance of the agent is very dependent on how how many feature detectors are implemented and how much of the game that the agent is capable of understanding. Because we only implemented a very basic agent as proof of concept it will not be smart enough to handle all the situations that it will get into, and therefore the performance is not any good measurement of how well the method will perform if expanded upon with more complex detectors and schemes. Therefore we did not deem it relevant to spend significant time measuring this performance.
@@ -16,11 +17,11 @@ Table \ref{tab:test_results} shows the results from the performance test. After 
 \begin{table}
 \begin{center}
 \begin{tabular}{| c | c |}
-  \hline                        
+  \hline
   Victories & Defeats\\
   \hline
   17 & 33 \\
-  \hline  
+  \hline
 \end{tabular}
 \caption{Results from performance test.}
 \label{tab:test_results}
@@ -28,12 +29,13 @@ Table \ref{tab:test_results} shows the results from the performance test. After 
 \end{table}
 
 \section{A cognitive cycle}
-A cognitive cycle is the sequence of processes that the cognitive model has to go through from sensing to execution of an action. In LIDA the sequence starts with sensing of the environment, next is understanding, then attention and last is the selection of an action and its execution. These cycles run constantly, and even several of them runs at the same time just in different stages. So when one cycle is finishing broadcasting from the global workspace another can be starting in the sensing phase. 
+\label{sec:cycle}
+A cognitive cycle is the sequence of processes that the cognitive model has to go through from sensing to execution of an action. In LIDA the sequence starts with sensing of the environment, next is understanding, then attention and last is the selection of an action and its execution. These cycles run constantly, and even several of them runs at the same time just in different stages. So when one cycle is finishing broadcasting from the global workspace another can be starting in the sensing phase.
 
-Following we describe the complete cognitive cycle that ends with the creation of a new worker unit. 	
+Following we describe the complete cognitive cycle that ends with the creation of a new worker unit.
 
 \subsection{Sensing}
-The first step in the cognitive cycle is sensing. Here sensory-memory samples the environment for new input to the model before low level feature detectors analyzes the input looking for specific features, ideas and meanings. If the feature detector finds something it sends excitation to a corresponding feature node in the perceptual associative memory (PAM). The amount of excitation can be anything from zero to one, depending on how important or present the given feature is currently. Figure \ref{fig:pamtable} shows the table of nodes that we implemented in the project, this is before StarCraft starts running so all the nodes have zero activation yet. See section \ref{sec:detectors} for a list of what detectors we implemented in our agent that will feed activation to these nodes. 
+The first step in the cognitive cycle is sensing. Here sensory-memory samples the environment for new input to the model before low level feature detectors analyzes the input looking for specific features, ideas and meanings. If the feature detector finds something it sends excitation to a corresponding feature node in the perceptual associative memory (PAM). The amount of excitation can be anything from zero to one, depending on how important or present the given feature is currently. Figure \ref{fig:pamtable} shows the table of nodes that we implemented in the project, this is before StarCraft starts running so all the nodes have zero activation yet. See section \ref{sec:detectors} for a list of what detectors we implemented in our agent that will feed activation to these nodes.
 
 \begin{figure}[h!tb]
 \centering
@@ -42,7 +44,7 @@ The first step in the cognitive cycle is sensing. Here sensory-memory samples th
 \label{fig:pamtable}
 \end{figure}
 
-When a node receives excitation it also sends a portion of this excitation upstream to any node that it has as a parent. This way meta-nodes like {\em resources} and {\em structures} can receive activation even though there are no feature detectors that directly affects this node. Figure \ref{fig:pamgraph} shows our current PAM graph with the relationships  between the nodes. 
+When a node receives excitation it also sends a portion of this excitation upstream to any node that it has as a parent. This way meta-nodes like {\em resources} and {\em structures} can receive activation even though there are no feature detectors that directly affects this node. Figure \ref{fig:pamgraph} shows our current PAM graph with the relationships  between the nodes.
 
 \begin{figure}[h!tb]
 \centering
@@ -53,7 +55,7 @@ When a node receives excitation it also sends a portion of this excitation upstr
 
 
 \subsection{Understanding}
-After the sensing phase and nodes in PAM have received excitation, any node that has an activation that is higher then the threshold will be moved to the Perceptual Buffer that is a sub module of the Workspace module. The content of this buffer and any relevant information from the Transient Episodic Memory and Declarative Memory will make up the Current Situational Model. The CSM has the structures that represents the agents current understanding of the world. Since we do not utilize the TEM and DM modules CSM contains only data from the Perceptual Buffer. Figure \ref{fig:csm} shows the content of CSM for our current cycle. 
+After the sensing phase and nodes in PAM have received excitation, any node that has an activation that is higher then the threshold will be moved to the Perceptual Buffer that is a sub module of the Workspace module. The content of this buffer and any relevant information from the Transient Episodic Memory and Declarative Memory will make up the Current Situational Model. The CSM has the structures that represents the agents current understanding of the world. Since we do not utilize the TEM and DM modules CSM contains only data from the Perceptual Buffer. Figure \ref{fig:csm} shows the content of CSM for our current cycle.
 
 \begin{figure}[h!tb]
 \centering
@@ -66,7 +68,7 @@ We can see that the agent knows that we can afford to make a worker and that our
 
 
 \subsection{Attention}
-After the CSM is updated the competition for consciousness begins. It is the job of attention codelets to bring important or urgent content to consciousness. The attention codelet creates a coalition of content from the CSM and gains activation based on the activation of both the nodes it gathers and the activation level of the codelet itself. All the codelets that are active, can be both new codelets and codelets from a previous cycles that has not yet decayed, then compete for the chance to be broadcast from the global workspace. In Figure \ref{fig:workspace} we see the codelets competing for consciousness in this cycle. We see that the codelet with a coalition of idleNexus, unsaturatedResources and affordWorker has the highest activated and will win the competition. It will therefore be the focus of consciousness when it is broadcast from the Global Workspace. 
+After the CSM is updated the competition for consciousness begins. It is the job of attention codelets to bring important or urgent content to consciousness. The attention codelet creates a coalition of content from the CSM and gains activation based on the activation of both the nodes it gathers and the activation level of the codelet itself. All the codelets that are active, can be both new codelets and codelets from a previous cycles that has not yet decayed, then compete for the chance to be broadcast from the global workspace. In Figure \ref{fig:workspace} we see the codelets competing for consciousness in this cycle. We see that the codelet with a coalition of idleNexus, unsaturatedResources and affordWorker has the highest activated and will win the competition. It will therefore be the focus of consciousness when it is broadcast from the Global Workspace.
 
 \begin{figure}[h!tb]
 \centering
@@ -75,11 +77,11 @@ After the CSM is updated the competition for consciousness begins. It is the job
 \label{fig:workspace}
 \end{figure}
 
-The coalition that gets broadcast is used for learning in several of the LIDA modules. But because learning is not implemented in the current version of the LIDA framework we could not utilize this. 
+The coalition that gets broadcast is used for learning in several of the LIDA modules. But because learning is not implemented in the current version of the LIDA framework we could not utilize this.
 
 \subsection{Action selection}
 \label{sec:action_selection}
-The last phase of the LIDA cognitive cycle is the action selection. The first step of this phase is the Procedural Memory receiving the conscious broadcast from the Global Workspace. The Procedural Memory contains the scheme net and using the information from the broadcast some of the schemes will increase their activation if their context is contained in the broadcast. The schemes are put above their threshold are instantiated as behaviors and then sent to the Action Selection module. Figure \ref{fig:proceduralmemory} shows all the available schemes in our implementation, and the current activated scheme is the one with the action to create a worker. The build worker scheme is activated because all of the nodes in its context was received with the conscious broadcast from last phase. 
+The last phase of the LIDA cognitive cycle is the action selection. The first step of this phase is the Procedural Memory receiving the conscious broadcast from the Global Workspace. The Procedural Memory contains the scheme net and using the information from the broadcast some of the schemes will increase their activation if their context is contained in the broadcast. The schemes are put above their threshold are instantiated as behaviors and then sent to the Action Selection module. Figure \ref{fig:proceduralmemory} shows all the available schemes in our implementation, and the current activated scheme is the one with the action to create a worker. The build worker scheme is activated because all of the nodes in its context was received with the conscious broadcast from last phase.
 
 \begin{figure}[h!tb]
 \centering

@@ -2,12 +2,11 @@
 \label{sec:cogarch}
 Cognitive architectures are architectures that base themselves on some model of human cognition. There are several competing theories about how cognition works, and one of the most well-supported is the Global Workspace Theory.
 
-One area that haven't been as well explored in relation to RTSes in general and StarCraft in particular, is cognitive architectures. Arrabales et al put forth that this is perhaps because of poor understanding within the field of classical AI of research into cognition. \cite{arrabales2009gamechars}
+There hasn't been widespread research done with cognitive architectures, however. Arrabales et al put forth that this is perhaps because of poor understanding within the field of classical AI of research into cognition. \cite{arrabales2009gamechars}
 
 There is many different cognitive architectures available today\cite{duch2008cognitive}. We chose to focus on those based on the Global Workspace theory, for several reasons. It's widely accepted as the currently best model of understanding consciousness\cite{Franklin2012}, implementations using it generally provide believable results\cite{arrabales2009gamechars}\cite{snaider2011lida} and it has a solid grounding in neurological and psychological models, experiments and empirical evidence\cite{Franklin2012}.
 
 \subsection{Global Workspace Theory}
-
 \begin{figure}[h!tb]
 \centering
 \includegraphics[scale=1.0]{graphics/globalworkspace.png}
@@ -17,18 +16,16 @@ There is many different cognitive architectures available today\cite{duch2008cog
 
 Global Workspace Theory is a model of cognition that is very well supported by experimental data, and is one of the most widely accepted models. \cite{dehaene2001towards} It has been used to implement processes that imitate human decision making (for example for solving the problem of assigning people to jobs in the US Navy).\cite{baars2005gwt}\cite{franklin2003interacting}
 
-It is based around an understanding of the brain as a set of many independently processing modules, working together by utilizing a shared workspace (hence the ``global workspace''). Every ``cognitive cycle'' all the processes compete for attention, and a single one gets the proverbial spotlight shone upon it.\cite{baars2005gwt}
+It is based around an understanding of the brain as a set of many independently processing modules, working together by utilizing a shared workspace (hence the ``global workspace''). Every ``cognitive cycle'' all the processes compete for attention, and a single one gets the proverbial spotlight shone upon it.\cite{baars2005gwt} When this happens, all the other modules/processes receive the ``broadcasted'' data from that module, and use it as they see fit; for example memory centers store the information received. This solves the relevancy problem, and it lets parts of the brain solve collaborate on problems that can't be solved unconsciously by individual modules.
 
 See figure \ref{fig:gwt} for a graphical overview of the theory.
 
 \subsubsection{The theatre metaphor}
 A common metaphor used is the {\em theatre metaphor}. Here we view the mind as a proverbial theatre, with an audience and a stage with a spotlight shining on it.
 
-Then various actors on stage get the spotlight shone upon them (according to the pandemonium theory which is often used cited; the one who shouts the loudest, basically\cite{selfridge1958pandemonium}), and is allowed to share its message with the the audience.
+Then various actors on stage get the spotlight shone upon them (according to the pandemonium theory which is often used; the one who shouts the loudest\cite{selfridge1958pandemonium}), and is allowed to share its message with the the audience.
 
 In the dark, behind the stage, are the various executive processes (represented by script writers, directors, etc.) who aren't visible but still help form what is seen.
-
-
 
 \subsubsection{Neurological basis for the Global Workspace Theory}
 According to R. Llinás et al.\cite{llinas1998neuronal}, the looped neural pathways between the thalamus and the cortex might be what is responsible for the conscious collaboration between various parts of the brain. The thalamus is responsible for letting various parts of the cortex broadcast and influence the rest of the cortex. This meshes well with the global workspace theory, and the idea of a single subsystem broadcasting its contents to the rest of the whole.

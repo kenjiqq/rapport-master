@@ -3,9 +3,10 @@
 \chapter{Implementation}
 In this chapter we describe how we implemented the project.
 Section \ref{sec:overview} we explain why we did what we did.
-Section \ref{sec:integration} how we integrated bwapi with lida
-Section \ref{sec:detectors} feature detectors we made
-Section \ref{sec:actionexecution} how action are executed from lida to bwapi
+In Section \ref{sec:integration} we explain how we integrated BWAPI with LIDA.
+Section \ref{sec:detectors} explains the feature detectors we made.
+In Section \ref{sec:attention} we explain how we manage attention in our agent.
+In Section \ref{sec:actionexecution} we explain how action are executed.
 
 \section{Overview}
 \label{sec:overview}
@@ -19,7 +20,7 @@ BWAPI itself provides only a basic C++ API, so JNIBWAPI provides, as explained i
 
 We also updated JNIBWAPI to adapt to some minor recent changes in BWAPI, and added in some missing functionality that we needed for controlling the game, like starting, pausing and restarting the on-going game.
 
-But to use the LIDA framework we had to integrate LIDA with JNIBWAPI. To accomplish this we implement the domain specific modules of the LIDA framework to make calls to JNIBWAPI. 
+But to use the LIDA framework we had to integrate LIDA with JNIBWAPI. To accomplish this we implement the domain specific modules of the LIDA framework to make calls to JNIBWAPI.
 
 \begin{figure}[h!tb]
 \centering
@@ -28,11 +29,11 @@ But to use the LIDA framework we had to integrate LIDA with JNIBWAPI. To accompl
 \label{fig:jantu}
 \end{figure}
 
-Figure \ref{fig:jantu} shows a general overview of the Jantu bot's architecture, which consists of 3 main parts. In the StarCraft process the game itself runs together with BWAPI injected into the game client. Because our code needs to be run in the Java virtual machine, our code is run in a separate process that communicates with the Starcraft process using a shared memory bridge. This enables JNI-BWAPI to make calls to BWAPI and retrieve information back across the bridge. 
+Figure \ref{fig:jantu} shows a general overview of the Jantu bot's architecture, which consists of 3 main parts. In the StarCraft process the game itself runs together with BWAPI injected into the game client. Because our code needs to be run in the Java virtual machine, our code is run in a separate process that communicates with the Starcraft process using a shared memory bridge. This enables JNI-BWAPI to make calls to BWAPI and retrieve information back across the bridge.
 
 In the Jantu process JNI-BWAPI is running together with the LIDA framework. In order to integrate the LIDA framework with JNI-BWAPI we setup the framework first with the configurations we needed to get it up and running. This involves describing and structuring the modules you need in different XML configuration files. Also in these files we configure what kind of information that will be possible to use and transmit internally in the LIDA framework.
 
-JNI-BWAPI consists of different models and types that represent Starcraft information like units and buildings together with a lot of native functions that can be called to communicate with BWAPI. We integrated this with LIDA by using a custom implementation of the Environment class in LIDA. This class becomes the interface between the domain specific modules of LIDA, the sensory memory and sensory-action memory, and JNI-BWAPI. 
+JNI-BWAPI consists of different models and types that represent Starcraft information like units and buildings together with a lot of native functions that can be called to communicate with BWAPI. We integrated this with LIDA by using a custom implementation of the Environment class in LIDA. This class becomes the interface between the domain specific modules of LIDA, the sensory memory and sensory-action memory, and JNI-BWAPI.
 
 
 \subsubsection{Environment module}
@@ -53,18 +54,18 @@ To achieve this we have to be able to pause and resume the game at any time, so 
 
 \section{Detectors}
 \label{sec:detectors}
-Feature detectors are how LIDA perceives it's environment and identifies important aspects of the current game state. They are tasks that are run repeatedly, at specific intervals and parses the game state at that time in order to identify a given feature that can later be used in different modules in LIDA, to recognize thoughts and concepts. Each detector usually only identifies one specific feature, but it is possible for one detector to identify several features if they are of the same type. 
+Feature detectors are how LIDA perceives it's environment and identifies important aspects of the current game state. They are tasks that are run repeatedly, at specific intervals and parses the game state at that time in order to identify a given feature that can later be used in different modules in LIDA, to recognize thoughts and concepts. Each detector usually only identifies one specific feature, but it is possible for one detector to identify several features if they are of the same type.
 
-Feature detectors can be created that detect almost every aspect of the game, and they can be everything from simply detecting the existence of specific units or game elements to more complex detectors that detect army compositions or enemy tactics and strategies. The more of them you implement the more advanced concepts you can identify and that opens up more advanced strategies you can perform yourself. 
+Feature detectors can be created that detect almost every aspect of the game, and they can be everything from simply detecting the existence of specific units or game elements to more complex detectors that detect army compositions or enemy tactics and strategies. The more of them you implement the more advanced concepts you can identify and that opens up more advanced strategies you can perform yourself.
 
 \subsection{Implemented feature detectors}
 Following are brief descriptions of the detectors we have implemented.
 
 \subsubsection{IdleWorkerFeatureDetector}
-This feature detector identifies worker units that don't have a job. A worker could be gathering resources, constructing buildings or scouting, but for efficiency it should be doing something at all times. 
+This feature detector identifies worker units that don't have a job. A worker could be gathering resources, constructing buildings or scouting, but for efficiency it should be doing something at all times.
 
 \subsubsection{ResourceFeatureDetector}
-This feature detector identifies what type of units and buildings that we currently have enough resources available to create. This can be buildings we can construct, units we can morph or upgrades that we can research. 
+This feature detector identifies what type of units and buildings that we currently have enough resources available to create. This can be buildings we can construct, units we can morph or upgrades that we can research.
 
 \subsubsection{SupplyBlockFeatureDetector}
 This feature detector identifies when we are getting close to being supply blocked, that means that we can't build any more units until another supply-granting building/unit is created.
@@ -73,7 +74,7 @@ This feature detector identifies when we are getting close to being supply block
 This feature detector identifies whether or not our available resource nodes have are saturated with enough workers that are gathering them. This can be used to decide if we need to build more workers or not.
 
 \subsubsection{BuildOrderFeatureDetector}
-This feature detector identifies what type of building we need to construct for our next step in the planned build order. For our simple implementation it detects if we have more resource generation then unit production buildings, so we need to expand our capacity by adding new ones. 
+This feature detector identifies what type of building we need to construct for our next step in the planned build order. For our simple implementation it detects if we have more resource generation then unit production buildings, so we need to expand our capacity by adding new ones.
 
 \subsubsection{IdleProductionFeatureDetector}
 This feature detector identifies when a production building is currently not training any units. In StarCraft being effective with the resources you have available is important, therefore not queuing units on a production building is important, but instead only building new units when production buildings are idle.
@@ -85,32 +86,33 @@ This feature detector identifies the buildings we have. This is important to kno
 This feature detector identifies when it is time to attack the enemy. In our current implementation is a very simple detector that just waits until we have collected a substantial army of units and then activates to ``detect'' that it is now time to attack.
 
 \section{Attention Module}
+\label{sec:attention}
 One of the main features of a cognitive system, and even of the human brain, is the ability to focus consciousness or give attention to a subsection of world as it perceives it. This is what the {\em attention module} is responsible for. It achieves this by running attention codelets that look for specific workspace content from the current situational model and them creates coalitions from this that are added to the global workspace, where they will compete with other coalitions for conscious focus.
 
 The activation for a coalition is based both on the activation for the PAM nodes that it contains and the activation for the codelet itself that created it.
 
 \subsection{Implemented attention codelets}
 \subsubsection{Idle worker codelet}
-A simple codelet that makes a coalition with idle worker node. This codelet has a high activation in order to make sure has a big change of winning the competition for consciousness since it is important for workers to be doing something at all times. 
+A simple codelet that makes a coalition with idle worker node. This codelet has a high activation in order to make sure has a big change of winning the competition for consciousness since it is important for workers to be doing something at all times.
 
 \subsubsection{Build worker codelet}
-This codelet looks for three different situations that decides if a worker should be created. These are if we can afford to create the worker, if our resources are not saturated already and the base building is not currently training any units. 
+This codelet looks for three different situations that decides if a worker should be created. These are if we can afford to create the worker, if our resources are not saturated already and the base building is not currently training any units.
 
 \subsubsection{Build supply codelet}
 This is another simple but important codelet that has a high activation value. It looks for the situation where we are supply blocked, or getting close to being supply blocked, and we can afford to build a supply structure. It has a high activation level because getting supply blocked means you can't create any more units until another supply structure is finished building, that will be a lot of valuable time lost where no units is trained.
 
 \subsubsection{Build Order Codelet}
-This is one of the more complex codelets, it looks for all the buildings that we can currently afford as well as all the buildings that we need to create according to the build order nodes. Combining these in a coalition allows the action selector later to decide what building should be created next. 
+This is one of the more complex codelets, it looks for all the buildings that we can currently afford as well as all the buildings that we need to create according to the build order nodes. Combining these in a coalition allows the action selector later to decide what building should be created next.
 
 \subsubsection{Train Units Codelet}
-This codelet is similar to the Build Order Codelet, except it looks for the units we can afford to train in addition to what unit production buildings we currently have available to use. 
+This codelet is similar to the Build Order Codelet, except it looks for the units we can afford to train in addition to what unit production buildings we currently have available to use.
 
 \subsubsection{Strategy Codelet}
 This codelet looks for any node that is a child from the strategy node. These are defensive or offensive strategies during a game. In our implementation we only have a simple strategy that is to attack with every army unit we have at the same time, when we feel we have a sufficient army size.
 
 \section{Action Execution}
 \label{sec:actionexecution}
-After LIDA has selected a focus of consciousness and an appropriate action has been selected from the behaviour net, the selected action must be executed. This gets executed by having the sensory-motor memory make function calls to the environment class, which functions as the interface between LIDA and JNI-BWAPI. 
+After LIDA has selected a focus of consciousness and an appropriate action has been selected from the behaviour net, the selected action must be executed. This gets executed by having the sensory-motor memory make function calls to the environment class, which functions as the interface between LIDA and JNI-BWAPI.
 
 How the action is implemented in the sensory-memory is up to the developer, as long as it performs its given function. It can be really simple implementation or you could do something more complex, LIDA is there to decide what parts or game state to focus on, and to make the decision on what action to perform, not how that action is executed.
 
@@ -119,16 +121,16 @@ How the action is implemented in the sensory-memory is up to the developer, as l
 This actions takes a worker that is not currently performing a task and orders it to start mining minerals from an unsaturated mineral deposit.
 
 \subsubsection{Build worker}
-This action starts training a worker unit at the main building in the home base, the Nexus for Protoss. 
+This action starts training a worker unit at the main building in the home base, the Nexus for Protoss.
 
-\subsubsection{Build supply} 
+\subsubsection{Build supply}
 This action constructs a building or unit that grants increased supply. This can be a building or a unit depending on the race. For Protoss it creates a structure called a pylon that grants more available maximum supply.
 
-\subsubsection{Build gateway} 
+\subsubsection{Build gateway}
 This action works in much the same way as {\em Build supply} except that it creates a production building called gateway. This building is used to warp in(train) army units.
 
-\subsubsection{Train zealot} 
+\subsubsection{Train zealot}
 This action sets a zealot for training at an available gateway that is currently not training any other units. It is important that it doesn't queue it at a gateway that is already training another unit since it locks up resources and is inefficient.
 
-\subsubsection{Attack} 
-This action executes an attack on enemy units. It can be a very simple action like in our implementation where it just used every available army unit and attacks the enemy, or it could be more complex like using groups of units for different attacks. Also worth noting that if you are not using perfect information then you can only attack units that you have seen by scouting or being invaded. 
+\subsubsection{Attack}
+This action executes an attack on enemy units. It can be a very simple action like in our implementation where it just used every available army unit and attacks the enemy, or it could be more complex like using groups of units for different attacks. Also worth noting that if you are not using perfect information then you can only attack units that you have seen by scouting or being invaded.
