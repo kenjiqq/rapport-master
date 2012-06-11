@@ -48,39 +48,6 @@ pdfproducer = {pdflatex}}
 
 \begin{document}
 
-\begin{titlepage}
-\begin{center}
-
-\vspace*{5cm}
-\hrule height 1pt
-\includegraphics[width=30mm]{graphics/jantu.pdf}\\
-\huge{\papertitle}
-
-\vspace{.5cm}
-\large{\authors}
-\vspace{.5cm}
-\hrule height 1pt
-
-\vspace{6cm}
-\end{center}
-\normalsize
-\begin{table}[!h]
-\begin{tabular}{ll}
-\multirow{4}{*}{\includegraphics[width=20mm]{graphics/logo.png}} & \\
-& Department of Computer and Information Science \\
-& Faculty of Information Technology, Mathematics and Electrical Engineering \\
-& Norwegian University of Science and Technology \\
-\end{tabular}
-\end{table}
-\vspace{.5cm}
-\begin{center}
-\today
-\end{center}
-\end{titlepage}
-
-\thispagestyle{empty}
-\cleardoublepage
-
 \begin{abstract}
 It has been shown that most players enjoys playing versus other human players over computer controlled opponents, but most artificial intelligence agents created today focus on winning in the most effective way possible. 
 Cognitive architectures are designed to emulate how the human brain operates when performing tasks. Very little research has been done on applying cognitive methods to the field of real-time strategy games. 
@@ -89,17 +56,20 @@ In this paper we aim to research the use of a cognitive model that is capable of
 \thispagestyle{empty}
 \cleardoublepage
 
+\renewcommand{\abstractname}{Sammendrag}
 \begin{abstract}
 Bla bla samme som det engelske.
 \end{abstract}
 \thispagestyle{empty}
 \cleardoublepage
 
-\chapter*{Acknowledgements}
-%%%%TOOOODOOO: SANDSMARK fix this shit to look better i guess
-\thispagestyle{empty}
 
+
+\renewcommand{\abstractname}{Acknowledgements}
+\begin{abstract}
+\thispagestyle{empty}
 Firstly we would also like to thank our supervisors; Helge Langseth and Anders Kofod-Petersen. We would also like to thank the Cognitive Computing Research Group at the University of Memphis, for their LIDA framework which is the basis of our project. Finally we would like to thank the developers of the BWAPI project, and in particular Adam Heinermann, as well as the rest of the members in the \#BWAPI IRC channel on Freenode.
+\end{abstract}
 
 \clearpage
 
